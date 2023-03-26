@@ -3,6 +3,7 @@ import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otus_food/presentation/recipe_list_screen/widgets/recipe_list_widget.dart';
+import 'package:otus_food/utils/colors.dart';
 
 class RecipeListScreen extends StatelessWidget {
   const RecipeListScreen({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class RecipeListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor:ColorsApp.defaultBackground,
         body: BlocBuilder<RecipeListCubit, RecipeListState>(
           builder: _builder,
         ),
