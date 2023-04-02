@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:otus_food/data/model/cooking_step.dart';
 import 'package:otus_food/data/repository/cooking_step_repo.dart';
 import 'package:otus_food/data/repository/ingredient_repo.dart';
 import 'package:otus_food/data/repository/recipe_repo.dart';

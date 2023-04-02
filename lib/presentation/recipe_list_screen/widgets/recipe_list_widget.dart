@@ -18,7 +18,7 @@ class RecipeListWidget extends StatelessWidget {
         },
         separatorBuilder: (context, index) {
           return const SizedBox(
-            height: 24,
+            height: 22,
           );
         },
         itemCount: recipeList.length);
@@ -34,7 +34,7 @@ class _RecipeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
-      child: Container(
+      child: SizedBox(
         height: 136,
         child: Stack(
           children: [
@@ -53,13 +53,13 @@ class _RecipeItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
                           maxLines: 2,
                           recipe.name,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 12,
                         ),
                         Row(children:  [
                           const Icon(Icons.access_time_outlined,color: Colors.black,size: 16,),
