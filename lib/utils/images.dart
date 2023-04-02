@@ -10,6 +10,8 @@ class Images {
   static const seven = 'assets/images/seven.jpg';
   static const listImages = [one, two, three, four, five, six, seven];
 
+  static const megaphone = 'assets/images/megaphone.png';
+
   static String getImageById(int id) {
     return listImages[id];
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
-import 'package:otus_food/navigation/main_navigation.dart';
 
 class RecipeListWidget extends StatelessWidget {
   final List<Recipe> recipeList;
@@ -76,9 +75,7 @@ class _RecipeItem extends StatelessWidget {
             Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: () => {
-                Navigator.of(context).pushNamed(MainNavigationRouteNames.recipeDescriptionScreen,arguments:recipe)
-                },
+                onTap: () => {},
               ),
             ),
           ],

@@ -3,6 +3,7 @@ import 'screen_factory.dart';
 
 abstract class MainNavigationRouteNames {
   static const recipeListScreen = '/';
+  static const recipeDescriptionScreen = '/recipeDescription';
 }
 
 class MainNavigation {
@@ -14,6 +15,10 @@ class MainNavigation {
       case MainNavigationRouteNames.recipeListScreen:
         return MaterialPageRoute(
           builder: (_) => _screenFactory.makeRecipeListScreen(),
+        );
+      case MainNavigationRouteNames.recipeDescriptionScreen:
+        return MaterialPageRoute(
+          builder: (_) => _screenFactory.makeRecipeDescriptionScreen(),
         );
       default:
         const widget = Text('Navigation error!!!');
