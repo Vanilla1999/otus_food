@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/appbar_description.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,31 +23,7 @@ class RecipeDescriptionScreen extends StatelessWidget {
       },
       child: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: const Text("Рецепт",
-                style: TextStyle(
-                    color: Color.fromRGBO(22, 89, 50, 1),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400)),
-            centerTitle: true,
-            leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.arrow_back),
-              color: Colors.black,
-            ),
-            actions: [
-              InkResponse(
-                borderRadius: BorderRadius.circular(40),
-                radius: 40,
-                child: const Image(
-                  image: AssetImage(Images.megaphone),
-                ),
-                onTap: () {},
-              ),
-            ],
-            shadowColor:const Color.fromRGBO(0, 0, 0, 0.5) ,
-          ),
+          appBar: const AppbarDescription(),
           backgroundColor: ColorsApp.defaultBackground,
           body: BlocBuilder<RecipeListCubit, RecipeListState>(
             builder: _builder,
