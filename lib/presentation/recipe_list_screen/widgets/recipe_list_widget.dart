@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
 
-import '../../components/required_time_widget.dart';
+import '../../components/title_time_widget.dart';
 
 class RecipeListWidget extends StatelessWidget {
   final List<Recipe> recipeList;
@@ -52,26 +52,10 @@ class _RecipeItem extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(16, 30, 23, 23),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                          maxLines: 2,
-                          recipe.name,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        RequiredTimeWidget(
-                          time: recipe.time,
-                        )
-                      ],
-                    ),
+                    child: TitleWithTimeWidget(
+                        time: recipe.time, name: recipe.name),
                   ),
-                )
+                ),
               ],
             ),
             Material(
