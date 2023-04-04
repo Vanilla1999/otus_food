@@ -35,16 +35,13 @@ class RecipeDescriptionScreen extends StatelessWidget {
   }
 
   Widget _builder(BuildContext context, RecipeListState state) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: state.when(
-        loading: () => const CircularProgressIndicator(),
-        success: (recipeList) => DescriptionWidget(
-          recipe: recipeList[1],
-        ),
-        failure: (error) => Container(
-          color: Colors.red,
-        ),
+    return state.when(
+      loading: () => const CircularProgressIndicator(),
+      success: (recipeList) => DescriptionWidget(
+        recipe: recipeList[1],
+      ),
+      failure: (error) => Container(
+        color: Colors.red,
       ),
     );
   }
