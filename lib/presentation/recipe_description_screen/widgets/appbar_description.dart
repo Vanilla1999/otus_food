@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:otus_food/utils/colors.dart';
 import 'package:otus_food/utils/images.dart';
 
 class AppbarDescription extends StatelessWidget implements PreferredSizeWidget {
@@ -15,7 +16,10 @@ class AppbarDescription extends StatelessWidget implements PreferredSizeWidget {
               fontWeight: FontWeight.w400)),
       centerTitle: true,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          changeSystemColor(ColorsApp.defaultBackground);
+          Navigator.of(context).pop();
+        },
         icon: const Icon(Icons.arrow_back),
         color: Colors.black,
       ),
@@ -29,7 +33,7 @@ class AppbarDescription extends StatelessWidget implements PreferredSizeWidget {
           onTap: () {},
         ),
       ],
-      shadowColor:const Color.fromRGBO(0, 0, 0, 0.5) ,
+      shadowColor: const Color.fromRGBO(0, 0, 0, 0.5),
     );
   }
 
