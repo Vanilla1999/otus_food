@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
 
+import '../../components/required_time_widget.dart';
+
 class RecipeListWidget extends StatelessWidget {
   final List<Recipe> recipeList;
 
@@ -11,7 +13,7 @@ class RecipeListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        physics:const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return _RecipeItem(
             recipe: recipeList[index],
@@ -54,7 +56,8 @@ class _RecipeItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
                           maxLines: 2,
                           recipe.name,
                           overflow: TextOverflow.ellipsis,
@@ -62,11 +65,9 @@ class _RecipeItem extends StatelessWidget {
                         const SizedBox(
                           height: 12,
                         ),
-                        Row(children:  [
-                          const Icon(Icons.access_time_outlined,color: Colors.black,size: 16,),
-                          const SizedBox(width: 11,),
-                          Text(recipe.time,style: const TextStyle(color: Colors.green),)
-                        ],)
+                        RequiredTimeWidget(
+                          time: recipe.time,
+                        )
                       ],
                     ),
                   ),
@@ -77,7 +78,9 @@ class _RecipeItem extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () => {
-                Navigator.of(context).pushNamed(MainNavigationRouteNames.recipeDescriptionScreen,arguments:recipe)
+                  Navigator.of(context).pushNamed(
+                      MainNavigationRouteNames.recipeDescriptionScreen,
+                      arguments: recipe)
                 },
               ),
             ),
