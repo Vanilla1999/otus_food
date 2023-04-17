@@ -10,7 +10,7 @@ class CookingStepUseCaseImpl extends CookingStepUseCase {
   @override
   DbAnswer<CookingStep> getCookingStepByRecipeId(int recipeId) {
     try {
-      return DbAnswer.success(recipeList: cookingStepRepo.getCookingStepsByRecipeId(recipeId));
+      return DbAnswer.success(list: cookingStepRepo.getCookingStepsByRecipeId(recipeId));
     } catch (e) {
       return DbAnswer.failure(error: e);
     }

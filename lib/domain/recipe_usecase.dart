@@ -10,7 +10,7 @@ class RecipeUseCaseImpl extends RecipeUseCase {
   @override
   DbAnswer<Recipe> getRecipes() {
     try {
-      return DbAnswer.success(recipeList: recipeRepo.getRecipes());
+      return DbAnswer.success(list: recipeRepo.getRecipes());
     } catch (e) {
       return DbAnswer.failure(error: e);
     }

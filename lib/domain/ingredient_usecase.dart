@@ -10,7 +10,7 @@ class IngredientUseCaseImpl extends IngredientUseCase {
   @override
   DbAnswer<Ingredient> getIngridientsByRecipeId(int recipeId) {
     try {
-      return DbAnswer.success(recipeList: ingredientRepo.getIngridientByRecipeId(recipeId));
+      return DbAnswer.success(list: ingredientRepo.getIngridientByRecipeId(recipeId));
     } catch (e) {
       return DbAnswer.failure(error: e);
     }

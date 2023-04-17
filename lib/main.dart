@@ -4,6 +4,7 @@ import 'package:otus_food/data/repository/cooking_step_repo.dart';
 import 'package:otus_food/data/repository/ingredient_repo.dart';
 import 'package:otus_food/data/repository/recipe_repo.dart';
 import 'package:otus_food/domain/cooking_step_usecase.dart';
+import 'package:otus_food/domain/get_ingredients_cooking_steps_by_recypeId_usecase.dart';
 import 'package:otus_food/domain/ingredient_usecase.dart';
 import 'package:otus_food/domain/recipe_usecase.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
@@ -17,6 +18,7 @@ void main() {
   getIt.registerSingleton<RecipeUseCase>(RecipeUseCaseImpl());
   getIt.registerSingleton<CookingStepUseCase>(CookingStepUseCaseImpl());
   getIt.registerSingleton<IngredientUseCase>(IngredientUseCaseImpl());
+  getIt.registerSingleton<GetIngredientsCookingStepsByRecypeId>(GetIngredientsCookingStepsByRecypeId());
   runApp(const MyApp());
 }
 

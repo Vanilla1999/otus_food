@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_cubit.dart';
+import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_state.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/appbar_description.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/description_widget.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit.dart';
@@ -26,7 +28,7 @@ class RecipeDescriptionScreen extends StatelessWidget {
         child: Scaffold(
           appBar: const AppbarDescription(),
           backgroundColor: ColorsApp.defaultBackground,
-          body: BlocBuilder<RecipeListCubit, RecipeListState>(
+          body: BlocBuilder<RecipeDescriptionCubit, RecipeDescriptionState>(
             builder: _builder,
           ),
         ),
@@ -34,12 +36,12 @@ class RecipeDescriptionScreen extends StatelessWidget {
     );
   }
 
-  Widget _builder(BuildContext context, RecipeListState state) {
+  Widget _builder(BuildContext context, RecipeDescriptionState state) {
     return state.when(
       loading: () => const CircularProgressIndicator(),
-      success: (recipeList) => Column(children: [
+      success: (recipe,ingredients,cookingSteps) => Column(children: [
         DescriptionWidget(
-          recipe: recipeList[1],
+          recipe: recipe,
         )
       ]),
       failure: (error) => Container(
