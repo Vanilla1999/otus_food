@@ -4,6 +4,7 @@ import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_des
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_state.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/appbar_description.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/description_widget.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/ingridients_widget.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,10 +40,11 @@ class RecipeDescriptionScreen extends StatelessWidget {
   Widget _builder(BuildContext context, RecipeDescriptionState state) {
     return state.when(
       loading: () => const CircularProgressIndicator(),
-      success: (recipe,ingredients,cookingSteps) => Column(children: [
+      success: (recipe,ingredients,cookingSteps) => ListView(children: [
         DescriptionWidget(
           recipe: recipe,
-        )
+        ),
+        IngridientsWidget(ingredients: ingredients),
       ]),
       failure: (error) => Container(
         color: Colors.red,
