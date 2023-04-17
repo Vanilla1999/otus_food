@@ -8,9 +8,10 @@ class IngredientUseCaseImpl extends IngredientUseCase {
   final IngredientRepo ingredientRepo = getIt<IngredientRepo>();
 
   @override
-  DbAnswer<Ingredient> getIngridientsByRecipeId(int recipeId) {
+  Future<DbAnswer<Ingredient>> getIngridientsByRecipeId(int recipeId) async {
     try {
-      return DbAnswer.success(list: ingredientRepo.getIngridientByRecipeId(recipeId));
+      return DbAnswer.success(
+          list: await ingredientRepo.getIngridientByRecipeId(recipeId));
     } catch (e) {
       return DbAnswer.failure(error: e);
     }
@@ -18,5 +19,5 @@ class IngredientUseCaseImpl extends IngredientUseCase {
 }
 
 abstract class IngredientUseCase {
-  DbAnswer<Ingredient> getIngridientsByRecipeId(int recipeId);
+  Future<DbAnswer<Ingredient>> getIngridientsByRecipeId(int recipeId);
 }

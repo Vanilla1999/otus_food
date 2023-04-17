@@ -8,9 +8,9 @@ class CookingStepUseCaseImpl extends CookingStepUseCase {
   final CookingStepRepo cookingStepRepo = getIt<CookingStepRepo>();
 
   @override
-  DbAnswer<CookingStep> getCookingStepByRecipeId(int recipeId) {
+  Future<DbAnswer<CookingStep>>  getCookingStepByRecipeId(int recipeId) async{
     try {
-      return DbAnswer.success(list: cookingStepRepo.getCookingStepsByRecipeId(recipeId));
+      return DbAnswer.success(list: await cookingStepRepo.getCookingStepsByRecipeId(recipeId));
     } catch (e) {
       return DbAnswer.failure(error: e);
     }
@@ -18,5 +18,5 @@ class CookingStepUseCaseImpl extends CookingStepUseCase {
 }
 
 abstract class CookingStepUseCase {
-  DbAnswer<CookingStep> getCookingStepByRecipeId(int recipeId);
+  Future<DbAnswer<CookingStep>> getCookingStepByRecipeId(int recipeId);
 }

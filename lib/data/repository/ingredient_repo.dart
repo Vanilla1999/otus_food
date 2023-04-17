@@ -2,8 +2,8 @@ import 'package:otus_food/data/model/ingredient.dart';
 
 class MockIngredientRepo extends IngredientRepo {
   @override
-  List<Ingredient> getIngridientByRecipeId(int recipeId) {
-    return [
+  Future<List<Ingredient>> getIngridientByRecipeId(int recipeId) {
+    return Future(() => [
       Ingredient(recipeId:1, name: "Соевый соус",amount: "8 ст. ложек"),
       Ingredient(recipeId:1, name:"Вода", amount:"8 ст. ложек"),
       Ingredient(recipeId:1, name:"Мёд", amount:"3 ст. ложек"),
@@ -15,10 +15,10 @@ class MockIngredientRepo extends IngredientRepo {
       Ingredient(recipeId:1, name:"Растительное масло",amount: "1 ч. ложек"),
       Ingredient(recipeId:1,name: "Филе лосося или сёмги", amount:"580 г"),
       Ingredient(recipeId:1, name:"Кунжут", amount:"по вкусу"),
-    ];
+    ]);
   }
 }
 
 abstract class IngredientRepo {
-  List<Ingredient> getIngridientByRecipeId(int recipeId);
+  Future<List<Ingredient>> getIngridientByRecipeId(int recipeId);
 }

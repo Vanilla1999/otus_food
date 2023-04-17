@@ -8,9 +8,9 @@ class RecipeUseCaseImpl extends RecipeUseCase {
   final RecipeRepo recipeRepo = getIt<RecipeRepo>();
 
   @override
-  DbAnswer<Recipe> getRecipes() {
+  Future<DbAnswer<Recipe>> getRecipes() async {
     try {
-      return DbAnswer.success(list: recipeRepo.getRecipes());
+      return DbAnswer.success(list: await recipeRepo.getRecipes());
     } catch (e) {
       return DbAnswer.failure(error: e);
     }
@@ -18,5 +18,5 @@ class RecipeUseCaseImpl extends RecipeUseCase {
 }
 
 abstract class RecipeUseCase {
-  DbAnswer<Recipe> getRecipes();
+  Future<DbAnswer<Recipe>> getRecipes();
 }

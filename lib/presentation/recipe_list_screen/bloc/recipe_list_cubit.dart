@@ -8,10 +8,11 @@ class RecipeListCubit extends Cubit<RecipeListState>{
 
   final RecipeUseCase recipeUseCase = getIt<RecipeUseCase>();
 
-  void initialData(){
-   recipeUseCase.getRecipes().map(
-       success: (recipeList)=> emit(RecipeListState.success(recipeList: recipeList.list)),
-       failure: (error)=>emit(RecipeListState.failure(error: error.error)));
+  Future<void> initialData() async{
+  final result = await recipeUseCase.getRecipes();
+  result.map(
+      success: (recipeList)=> emit(RecipeListState.success(recipeList: recipeList.list)),
+      failure: (error)=>emit(RecipeListState.failure(error: error.error)));
   }
 
 }

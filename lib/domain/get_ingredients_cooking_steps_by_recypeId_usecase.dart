@@ -11,11 +11,12 @@ class GetIngredientsCookingStepsByRecypeId {
   final IngredientRepo ingridientsRepo = getIt<IngredientRepo>();
   final CookingStepRepo cookingStepRepo = getIt<CookingStepRepo>();
 
-
-  DbAnswer2<Ingredient,CookingStep> getIngridientsCookingStepByRecipeId(int recipeId) {
+  Future<DbAnswer2<Ingredient, CookingStep>>
+      getIngridientsCookingStepByRecipeId(int recipeId) async {
     try {
-      return DbAnswer2.success(listOne:ingridientsRepo.getIngridientByRecipeId(recipeId),
-          listTwo : cookingStepRepo.getCookingStepsByRecipeId(recipeId));
+      return DbAnswer2.success(
+          listOne: await ingridientsRepo.getIngridientByRecipeId(recipeId),
+          listTwo: await cookingStepRepo.getCookingStepsByRecipeId(recipeId));
     } catch (e) {
       return DbAnswer2.failure(error: e);
     }
