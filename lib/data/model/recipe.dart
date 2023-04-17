@@ -1,8 +1,12 @@
-class Recipe{
-  final int id;
-  final String name;
-  final String time;
-  final String img;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'recipe.freezed.dart';
 
-  Recipe(this.id, this.name, this.time, this.img);
+@freezed
+class Recipe with _$Recipe {
+  factory Recipe({
+    required int id,
+    required String name,
+    required String time,
+    required String img,
+  }) = _Recipe;
 }

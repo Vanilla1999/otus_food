@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/presentation/components/title_time_widget.dart';
 
+import 'ingridients_widget.dart';
+
 class DescriptionWidget extends StatelessWidget {
   final Recipe recipe;
 
@@ -32,7 +34,7 @@ class DescriptionWidget extends StatelessWidget {
               image: AssetImage(recipe.img),
             ),
           ),
-        )
+        ),
       ],
     );
   }

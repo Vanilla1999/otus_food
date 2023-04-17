@@ -64,7 +64,7 @@ class _RecipeItem extends StatelessWidget {
                 onTap: () => {
                   Navigator.of(context).pushNamed(
                       MainNavigationRouteNames.recipeDescriptionScreen,
-                      arguments: recipe)
+                      arguments: recipe.copyWith())
                 },
               ),
             ),

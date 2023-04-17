@@ -1,8 +1,16 @@
-class CookingStep{
-  final int recipeId;
-  final int numberStep;
-  final String description;
-  final int time;
 
-  CookingStep(this.recipeId, this.numberStep, this.description, this.time);
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'cooking_step.freezed.dart';
+
+
+
+@freezed
+class CookingStep with _$CookingStep {
+  factory CookingStep({
+    required int recipeId,
+    required int numberStep,
+    required String description,
+  required int time,
+  }) = _CookingStep;
 }

@@ -18,7 +18,7 @@ class RecipeDescriptionScreen extends StatelessWidget {
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
     return WillPopScope(
-      onWillPop: () async{
+      onWillPop: () async {
         changeSystemColor(ColorsApp.defaultBackground);
         return true;
       },
@@ -37,9 +37,11 @@ class RecipeDescriptionScreen extends StatelessWidget {
   Widget _builder(BuildContext context, RecipeListState state) {
     return state.when(
       loading: () => const CircularProgressIndicator(),
-      success: (recipeList) => DescriptionWidget(
-        recipe: recipeList[1],
-      ),
+      success: (recipeList) => Column(children: [
+        DescriptionWidget(
+          recipe: recipeList[1],
+        )
+      ]),
       failure: (error) => Container(
         color: Colors.red,
       ),

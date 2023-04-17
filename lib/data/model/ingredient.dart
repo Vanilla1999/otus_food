@@ -1,7 +1,12 @@
-class Ingredient{
-final int recipeId;
-final String name;
-final String amount;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Ingredient(this.recipeId, this.name, this.amount);
+part 'ingredient.freezed.dart';
+
+@freezed
+class Ingredient with _$Ingredient {
+  factory Ingredient({
+    required int recipeId,
+    required String name,
+    required String amount,
+  }) = _Ingredient;
 }
