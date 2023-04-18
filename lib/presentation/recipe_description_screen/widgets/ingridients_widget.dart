@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/ingredient.dart';
+import 'package:otus_food/presentation/components/styles.dart';
 
 class IngridientsWidget extends StatelessWidget {
   final List<Ingredient> ingredients;
@@ -16,10 +17,7 @@ class IngridientsWidget extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(16, 22.54, 16, 18),
           child: Text(
             "Ингредиенты",
-            style: TextStyle(
-                color: Color(0xff165932),
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
+            style:title,
           ),
         ),
         Padding(
