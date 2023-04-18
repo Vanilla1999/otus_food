@@ -17,13 +17,13 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
   Future<void> initialData(Recipe recipe) async {
     final result = await getIngredientsCookingStepsByRecypeId
         .getIngridientsCookingStepByRecipeId(recipe.id);
-    result.map(
-        success: (ingridientsCookingSteps) => emit(
+    result.when(
+        success: (ingredients,cookingSteps) => emit(
             RecipeDescriptionState.success(
                 recipe: recipe,
-                ingredients: ingridientsCookingSteps.listOne,
-                cookingSteps: ingridientsCookingSteps.listTwo)),
+                ingredients: ingredients,
+                cookingSteps: cookingSteps)),
         failure: (error) =>
-            emit(RecipeDescriptionState.failure(error: error.error)));
+            emit(RecipeDescriptionState.failure(error: error)));
   }
 }
