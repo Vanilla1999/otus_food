@@ -6,6 +6,7 @@ import 'package:otus_food/presentation/recipe_description_screen/widgets/appbar_
 import 'package:otus_food/presentation/recipe_description_screen/widgets/cooking_steps_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/description_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/ingridients_widget.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/start_cooking_widget.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,7 @@ class RecipeDescriptionScreen extends StatelessWidget {
         ),
         IngridientsWidget(ingredients: ingredients),
         CookingStepsWidget(cookingSteps: cookingSteps),
+        StartCookingWidget( cubit: context.read<RecipeDescriptionCubit>(),),
       ]),
       failure: (error) => Container(
         color: Colors.red,

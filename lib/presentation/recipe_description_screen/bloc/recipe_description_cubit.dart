@@ -26,4 +26,7 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
         failure: (error) =>
             emit(RecipeDescriptionState.failure(error: error)));
   }
+  void startCooking(){
+
+  }
 }
