@@ -14,14 +14,15 @@ extension RecipeTimeToString on int {
     var string = "";
     var minutes = this -(hours*60);
     var timeToHour = this / 60;
-    if(timeToHour>=1)
-    if (timeToHour <= 4 &&timeToHour >2) {
-      string+= "$hours часа";
-    }else {
-      if(timeToHour >2) {
-        string+= "$hours часов";
+    if(timeToHour>=1) {
+      if (hours <= 4 && hours > 2) {
+        string += "$hours часа";
       } else {
-        string+= "$hours час";
+        if (hours > 2) {
+          string += "$hours часов";
+        } else {
+          string += "$hours час";
+        }
       }
     }
     if(timeToHour>1) {
