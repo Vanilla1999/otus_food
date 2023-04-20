@@ -41,8 +41,8 @@ class RecipeDescriptionStart extends StatelessWidget {
               cubit: cubit,
             ),
           ]),
-          const TimerDisctiption(
-            time: 10,
+           TimerDisctiption(
+            time: recipe.time,
           ),
         ],
       ),

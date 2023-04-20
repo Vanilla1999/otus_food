@@ -44,8 +44,9 @@ class _Timer extends StatefulWidget {
 }
 
 class _TimerState extends State<_Timer> {
+  int timeTimer = 0;
+
   void _startTimer() {
-    int timeTimer = widget.time;
     Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
@@ -65,15 +66,24 @@ class _TimerState extends State<_Timer> {
   @override
   void initState() {
     super.initState();
-    //_startTimer();
+    timeTimer = widget.time * 60;
+    _startTimer();
+  }
+
+  String formatedTime({required int timeInSecond}) {
+    int sec = timeInSecond % 60;
+    int min = (timeInSecond / 60).floor();
+    String minute = min.toString().length <= 1 ? "0$min" : "$min";
+    String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+    return "$minute : $second";
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      "38:59",
+    return Text(
+      formatedTime(timeInSecond: timeTimer),
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
     );
   }
