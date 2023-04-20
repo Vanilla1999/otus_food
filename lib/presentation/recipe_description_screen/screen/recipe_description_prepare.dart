@@ -7,7 +7,7 @@ import 'package:otus_food/presentation/recipe_description_screen/widgets/descrip
 import 'package:otus_food/presentation/recipe_description_screen/widgets/ingridients_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/appbar_description_prepare.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/cooking_steps_widget.dart';
-import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/start_cooking_widget.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/start_cooking_button_widget.dart';
 
 
 
@@ -38,7 +38,7 @@ class RecipeDescriptionPrepare extends StatelessWidget {
         ),
         IngridientsWidget(ingredients: ingredients),
         CookingStepsWidget(cookingSteps: cookingSteps),
-        StartCookingWidget(
+        StartCookingButtonWidget(
           cubit: cubit,
         ),
       ]),
