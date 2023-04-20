@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:otus_food/data/model/recipe.dart';
+
 part 'recipe_list_state.freezed.dart';
 @freezed
 class RecipeListState with _$RecipeListState {

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'db_answer_two.freezed.dart';
 @Freezed(genericArgumentFactories: true)
 class DbAnswer2 <T,B> with _$DbAnswer2<T,B>{

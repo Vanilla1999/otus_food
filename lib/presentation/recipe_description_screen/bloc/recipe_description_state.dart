@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/scroll_view.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:otus_food/data/model/cooking_step.dart';
 import 'package:otus_food/data/model/ingredient.dart';

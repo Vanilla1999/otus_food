@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_cubit.dart';
 import 'package:otus_food/presentation/recipe_list_screen/bloc/recipe_list_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otus_food/presentation/recipe_list_screen/widgets/recipe_list_widget.dart';
 import 'package:otus_food/utils/colors.dart';
 

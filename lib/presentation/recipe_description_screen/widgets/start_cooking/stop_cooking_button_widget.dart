@@ -13,7 +13,7 @@ class StopCookingButtonWidget extends StatelessWidget {
         child: OutlinedButton(
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.fromLTRB(40, 14, 40, 13),
-              side:const BorderSide(width: 4,color: const Color(0xff165932)),
+              side:const BorderSide(width: 4,color: Color(0xff165932)),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25), // <-- Radius
               ),
@@ -25,7 +25,7 @@ class StopCookingButtonWidget extends StatelessWidget {
               "Закончить готовить",
               maxLines: 1,
               style: TextStyle(
-                  color: const Color(0xff165932), fontWeight: FontWeight.w500, fontSize: 16),
+                  color: Color(0xff165932), fontWeight: FontWeight.w500, fontSize: 16),
             )),
       ),
     );

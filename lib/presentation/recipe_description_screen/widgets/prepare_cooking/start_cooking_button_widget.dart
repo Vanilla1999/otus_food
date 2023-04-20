@@ -13,8 +13,7 @@ class StartCookingButtonWidget extends StatelessWidget {
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xff165932),
-              padding: EdgeInsets.fromLTRB(50, 14, 50, 13),
-              minimumSize: const Size(232,48),
+              padding: const EdgeInsets.fromLTRB(50, 14, 50, 13),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25), // <-- Radius
               ),
