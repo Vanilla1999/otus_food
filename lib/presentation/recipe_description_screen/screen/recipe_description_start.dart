@@ -8,6 +8,7 @@ import 'package:otus_food/presentation/recipe_description_screen/widgets/ingridi
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/cooking_steps_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/start_cooking_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/start_cooking/appbar_description_start.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/start_cooking/cooking_steps_start_cooking_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/start_cooking/timer_description_widger.dart';
 
 class RecipeDescriptionStart extends StatelessWidget {
@@ -31,19 +32,19 @@ class RecipeDescriptionStart extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          ListView(
-              physics: const BouncingScrollPhysics() ,
-              children: [
+          ListView(physics: const BouncingScrollPhysics(), children: [
             DescriptionWidget(
               recipe: recipe,
             ),
             IngridientsWidget(ingredients: ingredients),
-            CookingStepsWidget(cookingSteps: cookingSteps),
+            CookingStepsStartCookingWidget(cookingSteps: cookingSteps),
             StartCookingWidget(
               cubit: cubit,
             ),
           ]),
-          const TimerDisctiption(time: 10,),
+          const TimerDisctiption(
+            time: 10,
+          ),
         ],
       ),
     );
