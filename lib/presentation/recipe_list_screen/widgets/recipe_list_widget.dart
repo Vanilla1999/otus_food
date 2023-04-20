@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
+import 'package:otus_food/utils/extention.dart';
 
 import '../../components/title_time_widget.dart';
 
@@ -53,7 +54,7 @@ class _RecipeItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(16, 30, 23, 23),
                     child: TitleWithTimeWidget(
-                        time: recipe.time, name: recipe.name),
+                        time: recipe.time.timeToStringRecipe(), name: recipe.name),
                   ),
                 ),
               ],

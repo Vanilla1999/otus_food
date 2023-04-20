@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/cooking_step.dart';
 import 'package:otus_food/presentation/components/styles.dart';
+import 'package:otus_food/utils/extention.dart';
 
 class CookingStepsWidget extends StatelessWidget {
   final List<CookingStep> cookingSteps;

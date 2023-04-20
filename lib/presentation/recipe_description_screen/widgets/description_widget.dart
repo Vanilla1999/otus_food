@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/presentation/components/title_time_widget.dart';
+import 'package:otus_food/utils/extention.dart';
 
 class DescriptionWidget extends StatelessWidget {
   final Recipe recipe;
@@ -14,7 +15,7 @@ class DescriptionWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 17, right: 17, top: 27.6),
-          child: TitleWithTimeWidget(time: recipe.time, name: recipe.name),
+          child: TitleWithTimeWidget(time: recipe.time.timeToStringRecipe(), name: recipe.name),
         ),
         const SizedBox(
           height: 16.28,

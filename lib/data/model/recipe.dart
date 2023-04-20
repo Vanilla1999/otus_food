@@ -7,7 +7,7 @@ class Recipe with _$Recipe {
   factory Recipe({
     required int id,
     required String name,
-    required String time,
+    required int time,
     required String img,
   }) = _Recipe;
 }
