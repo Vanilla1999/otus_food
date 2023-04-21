@@ -8,7 +8,7 @@ class StartCookingButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 27,bottom: 90),
+      padding: const EdgeInsets.only(top: 27,bottom: 32),
       child: Center(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(

@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:otus_food/data/model/account.dart';
+import 'package:otus_food/data/model/comment.dart';
 import 'package:otus_food/data/model/cooking_step.dart';
 import 'package:otus_food/data/model/ingredient.dart';
 import 'package:otus_food/data/model/recipe.dart';
@@ -17,7 +19,8 @@ class RecipeDescriptionState with _$RecipeDescriptionState {
   const factory RecipeDescriptionState.successPrepareCooking(
       {required Recipe recipe,
       required List<Ingredient> ingredients,
-      required List<CookingStep> cookingSteps}) = _SuccsessPrepareCooking;
+      required List<CookingStep> cookingSteps,
+      required List<Comment> comments,required List<Account> accounts}) = _SuccsessPrepareCooking;
 
   const factory RecipeDescriptionState.failure({Object? error}) = _Failure;
 }

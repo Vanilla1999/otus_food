@@ -30,11 +30,14 @@ class RecipeDescriptionScreen extends StatelessWidget {
   Widget _builder(BuildContext context, RecipeDescriptionState state) {
     return state.when(
       loading: () => const CircularProgressIndicator(),
-      successPrepareCooking: (recipe, ingredients, cookingSteps) =>
-          RecipeDescriptionPrepare(
+      successPrepareCooking:
+          (recipe, ingredients, cookingSteps, comments, accounts) =>
+              RecipeDescriptionPrepare(
         recipe: recipe,
         ingredients: ingredients,
         cookingSteps: cookingSteps,
+        comments: comments,
+        accounts: accounts,
         cubit: context.read<RecipeDescriptionCubit>(),
       ),
       failure: (error) => Container(

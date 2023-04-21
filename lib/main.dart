@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:otus_food/data/repository/account_repo.dart';
+import 'package:otus_food/data/repository/comments_repo.dart';
 import 'package:otus_food/data/repository/cooking_step_repo.dart';
 import 'package:otus_food/data/repository/ingredient_repo.dart';
 import 'package:otus_food/data/repository/recipe_repo.dart';
@@ -18,6 +20,8 @@ void main() {
   getIt.registerSingleton<RecipeUseCase>(RecipeUseCaseImpl());
   getIt.registerSingleton<CookingStepUseCase>(CookingStepUseCaseImpl());
   getIt.registerSingleton<IngredientUseCase>(IngredientUseCaseImpl());
+  getIt.registerSingleton<CommentRepo>(MockCommentRepo());
+  getIt.registerSingleton<AccountRepo>(MockAccountRepo());
   getIt.registerSingleton<GetIngredientsCookingStepsByRecypeId>(GetIngredientsCookingStepsByRecypeId());
   runApp(const MyApp());
 }

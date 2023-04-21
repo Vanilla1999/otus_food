@@ -19,14 +19,15 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
     final result = await getIngredientsCookingStepsByRecypeId
         .getIngridientsCookingStepByRecipeId(recipe.id);
     result.when(
-        success: (ingredients, cookingSteps) {
+        success: (ingredients, cookingSteps, comments,accounts) {
           _recipe = recipe;
           _ingredients = ingredients;
           _cookingStreps = cookingSteps;
           emit(RecipeDescriptionState.successPrepareCooking(
               recipe: recipe,
               ingredients: ingredients,
-              cookingSteps: cookingSteps));
+              cookingSteps: cookingSteps,
+              comments: comments,accounts: accounts));
         },
         failure: (error) => emit(RecipeDescriptionState.failure(error: error)));
   }
