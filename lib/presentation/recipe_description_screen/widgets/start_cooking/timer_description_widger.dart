@@ -45,9 +45,9 @@ class _Timer extends StatefulWidget {
 
 class _TimerState extends State<_Timer> {
   int timeTimer = 0;
-
+  Timer? _timer;
   void _startTimer() {
-    Timer.periodic(
+    _timer= Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
         if (timeTimer == 0) {
@@ -86,5 +86,10 @@ class _TimerState extends State<_Timer> {
       style: const TextStyle(
           fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
     );
+  }
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 }
