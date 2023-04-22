@@ -18,6 +18,7 @@ class RecipeDescriptionPrepare extends StatelessWidget {
   final List<CookingStep> cookingSteps;
   final List<Comment> comments;
   final List<Account> accounts;
+  final ValueNotifier<List<Comment>> valueNotifier;
   final RecipeDescriptionCubit cubit;
 
   const RecipeDescriptionPrepare({
@@ -28,6 +29,7 @@ class RecipeDescriptionPrepare extends StatelessWidget {
     required this.comments,
     required this.cubit,
     required this.accounts,
+    required this.valueNotifier,
   }) : super(key: key);
 
   @override
@@ -52,7 +54,9 @@ class RecipeDescriptionPrepare extends StatelessWidget {
         ),
         CommentsWidget(
           comments: comments,
-          accounts:accounts
+          accounts: accounts,
+          cubit: cubit,
+          valueNotifier: valueNotifier,
         )
       ]),
     );

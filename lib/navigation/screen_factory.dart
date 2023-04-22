@@ -20,7 +20,7 @@ class ScreenFactory {
     changeSystemColor(Colors.white);
     return BlocProvider<RecipeDescriptionCubit>(
       create: (context) => RecipeDescriptionCubit()..initialData(recipe),
-      child: const RecipeDescriptionScreen(),
+      child:  RecipeDescriptionScreen(),
     );
   }
 }

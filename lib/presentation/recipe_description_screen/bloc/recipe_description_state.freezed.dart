@@ -29,6 +29,7 @@ mixin _$RecipeDescriptionState {
             List<Comment> comments,
             List<Account> accounts)
         successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ mixin _$RecipeDescriptionState {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +63,7 @@ mixin _$RecipeDescriptionState {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) =>
@@ -71,6 +74,7 @@ mixin _$RecipeDescriptionState {
     required TResult Function(_SuccsessStartCooking value) successStartCooking,
     required TResult Function(_SuccsessPrepareCooking value)
         successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +83,7 @@ mixin _$RecipeDescriptionState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccsessStartCooking value)? successStartCooking,
     TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -87,6 +92,7 @@ mixin _$RecipeDescriptionState {
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccsessStartCooking value)? successStartCooking,
     TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -160,6 +166,7 @@ class _$_Loading implements _Loading {
             List<Comment> comments,
             List<Account> accounts)
         successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
     return loading();
@@ -179,6 +186,7 @@ class _$_Loading implements _Loading {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
     return loading?.call();
@@ -198,6 +206,7 @@ class _$_Loading implements _Loading {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
@@ -214,6 +223,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_SuccsessStartCooking value) successStartCooking,
     required TResult Function(_SuccsessPrepareCooking value)
         successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -225,6 +235,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccsessStartCooking value)? successStartCooking,
     TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -236,6 +247,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccsessStartCooking value)? successStartCooking,
     TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -377,6 +389,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
             List<Comment> comments,
             List<Account> accounts)
         successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
     return successStartCooking(recipe, ingredients, cookingSteps);
@@ -396,6 +409,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
     return successStartCooking?.call(recipe, ingredients, cookingSteps);
@@ -415,6 +429,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
@@ -431,6 +446,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
     required TResult Function(_SuccsessStartCooking value) successStartCooking,
     required TResult Function(_SuccsessPrepareCooking value)
         successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
     required TResult Function(_Failure value) failure,
   }) {
     return successStartCooking(this);
@@ -442,6 +458,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccsessStartCooking value)? successStartCooking,
     TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
     TResult? Function(_Failure value)? failure,
   }) {
     return successStartCooking?.call(this);
@@ -453,6 +470,7 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccsessStartCooking value)? successStartCooking,
     TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -641,6 +659,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
             List<Comment> comments,
             List<Account> accounts)
         successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
     return successPrepareCooking(
@@ -661,6 +680,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
     return successPrepareCooking?.call(
@@ -681,6 +701,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
@@ -698,6 +719,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
     required TResult Function(_SuccsessStartCooking value) successStartCooking,
     required TResult Function(_SuccsessPrepareCooking value)
         successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
     required TResult Function(_Failure value) failure,
   }) {
     return successPrepareCooking(this);
@@ -709,6 +731,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccsessStartCooking value)? successStartCooking,
     TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
     TResult? Function(_Failure value)? failure,
   }) {
     return successPrepareCooking?.call(this);
@@ -720,6 +743,7 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccsessStartCooking value)? successStartCooking,
     TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -745,6 +769,190 @@ abstract class _SuccsessPrepareCooking implements RecipeDescriptionState {
   List<Account> get accounts;
   @JsonKey(ignore: true)
   _$$_SuccsessPrepareCookingCopyWith<_$_SuccsessPrepareCooking> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AddNewCommentCopyWith<$Res> {
+  factory _$$_AddNewCommentCopyWith(
+          _$_AddNewComment value, $Res Function(_$_AddNewComment) then) =
+      __$$_AddNewCommentCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Comment> comments});
+}
+
+/// @nodoc
+class __$$_AddNewCommentCopyWithImpl<$Res>
+    extends _$RecipeDescriptionStateCopyWithImpl<$Res, _$_AddNewComment>
+    implements _$$_AddNewCommentCopyWith<$Res> {
+  __$$_AddNewCommentCopyWithImpl(
+      _$_AddNewComment _value, $Res Function(_$_AddNewComment) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? comments = null,
+  }) {
+    return _then(_$_AddNewComment(
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddNewComment implements _AddNewComment {
+  const _$_AddNewComment({required final List<Comment> comments})
+      : _comments = comments;
+
+  final List<Comment> _comments;
+  @override
+  List<Comment> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
+
+  @override
+  String toString() {
+    return 'RecipeDescriptionState.addNewComment(comments: $comments)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddNewComment &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_comments));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddNewCommentCopyWith<_$_AddNewComment> get copyWith =>
+      __$$_AddNewCommentCopyWithImpl<_$_AddNewComment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps)
+        successStartCooking,
+    required TResult Function(
+            Recipe recipe,
+            List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps,
+            List<Comment> comments,
+            List<Account> accounts)
+        successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
+    required TResult Function(Object? error) failure,
+  }) {
+    return addNewComment(comments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps)?
+        successStartCooking,
+    TResult? Function(
+            Recipe recipe,
+            List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps,
+            List<Comment> comments,
+            List<Account> accounts)?
+        successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
+    TResult? Function(Object? error)? failure,
+  }) {
+    return addNewComment?.call(comments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Recipe recipe, List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps)?
+        successStartCooking,
+    TResult Function(
+            Recipe recipe,
+            List<Ingredient> ingredients,
+            List<CookingStep> cookingSteps,
+            List<Comment> comments,
+            List<Account> accounts)?
+        successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
+    TResult Function(Object? error)? failure,
+    required TResult orElse(),
+  }) {
+    if (addNewComment != null) {
+      return addNewComment(comments);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccsessStartCooking value) successStartCooking,
+    required TResult Function(_SuccsessPrepareCooking value)
+        successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return addNewComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccsessStartCooking value)? successStartCooking,
+    TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return addNewComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccsessStartCooking value)? successStartCooking,
+    TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (addNewComment != null) {
+      return addNewComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddNewComment implements RecipeDescriptionState {
+  const factory _AddNewComment({required final List<Comment> comments}) =
+      _$_AddNewComment;
+
+  List<Comment> get comments;
+  @JsonKey(ignore: true)
+  _$$_AddNewCommentCopyWith<_$_AddNewComment> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -820,6 +1028,7 @@ class _$_Failure implements _Failure {
             List<Comment> comments,
             List<Account> accounts)
         successPrepareCooking,
+    required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
     return failure(error);
@@ -839,6 +1048,7 @@ class _$_Failure implements _Failure {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
     return failure?.call(error);
@@ -858,6 +1068,7 @@ class _$_Failure implements _Failure {
             List<Comment> comments,
             List<Account> accounts)?
         successPrepareCooking,
+    TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
@@ -874,6 +1085,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_SuccsessStartCooking value) successStartCooking,
     required TResult Function(_SuccsessPrepareCooking value)
         successPrepareCooking,
+    required TResult Function(_AddNewComment value) addNewComment,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -885,6 +1097,7 @@ class _$_Failure implements _Failure {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccsessStartCooking value)? successStartCooking,
     TResult? Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult? Function(_AddNewComment value)? addNewComment,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -896,6 +1109,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccsessStartCooking value)? successStartCooking,
     TResult Function(_SuccsessPrepareCooking value)? successPrepareCooking,
+    TResult Function(_AddNewComment value)? addNewComment,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

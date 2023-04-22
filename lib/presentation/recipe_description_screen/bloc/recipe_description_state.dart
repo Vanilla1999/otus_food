@@ -22,5 +22,8 @@ class RecipeDescriptionState with _$RecipeDescriptionState {
       required List<CookingStep> cookingSteps,
       required List<Comment> comments,required List<Account> accounts}) = _SuccsessPrepareCooking;
 
+  const factory RecipeDescriptionState.addNewComment(
+      {required List<Comment> comments}) = _AddNewComment;
+
   const factory RecipeDescriptionState.failure({Object? error}) = _Failure;
 }
