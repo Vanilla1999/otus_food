@@ -12,15 +12,11 @@ class RecipeDescriptionState with _$RecipeDescriptionState {
   const factory RecipeDescriptionState.loading() = _Loading;
 
   const factory RecipeDescriptionState.successStartCooking(
-      {required Recipe recipe,
-      required List<Ingredient> ingredients,
-      required List<CookingStep> cookingSteps}) = _SuccsessStartCooking;
+      {required Recipe recipe}) = _SuccsessStartCooking;
 
   const factory RecipeDescriptionState.successPrepareCooking(
       {required Recipe recipe,
-      required List<Ingredient> ingredients,
-      required List<CookingStep> cookingSteps,
-      required List<Comment> comments,required List<Account> accounts}) = _SuccsessPrepareCooking;
+      required List<Comment> comments}) = _SuccsessPrepareCooking;
 
   const factory RecipeDescriptionState.addNewComment(
       {required List<Comment> comments}) = _AddNewComment;

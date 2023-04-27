@@ -19,15 +19,8 @@ mixin _$RecipeDescriptionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
@@ -36,15 +29,8 @@ mixin _$RecipeDescriptionState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
@@ -53,15 +39,8 @@ mixin _$RecipeDescriptionState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
@@ -156,15 +135,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
@@ -176,15 +148,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
@@ -196,15 +161,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
@@ -268,10 +226,7 @@ abstract class _$$_SuccsessStartCookingCopyWith<$Res> {
           $Res Function(_$_SuccsessStartCooking) then) =
       __$$_SuccsessStartCookingCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {Recipe recipe,
-      List<Ingredient> ingredients,
-      List<CookingStep> cookingSteps});
+  $Res call({Recipe recipe});
 
   $RecipeCopyWith<$Res> get recipe;
 }
@@ -288,22 +243,12 @@ class __$$_SuccsessStartCookingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipe = null,
-    Object? ingredients = null,
-    Object? cookingSteps = null,
   }) {
     return _then(_$_SuccsessStartCooking(
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as Recipe,
-      ingredients: null == ingredients
-          ? _value._ingredients
-          : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<Ingredient>,
-      cookingSteps: null == cookingSteps
-          ? _value._cookingSteps
-          : cookingSteps // ignore: cast_nullable_to_non_nullable
-              as List<CookingStep>,
     ));
   }
 
@@ -319,34 +264,14 @@ class __$$_SuccsessStartCookingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SuccsessStartCooking implements _SuccsessStartCooking {
-  const _$_SuccsessStartCooking(
-      {required this.recipe,
-      required final List<Ingredient> ingredients,
-      required final List<CookingStep> cookingSteps})
-      : _ingredients = ingredients,
-        _cookingSteps = cookingSteps;
+  const _$_SuccsessStartCooking({required this.recipe});
 
   @override
   final Recipe recipe;
-  final List<Ingredient> _ingredients;
-  @override
-  List<Ingredient> get ingredients {
-    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ingredients);
-  }
-
-  final List<CookingStep> _cookingSteps;
-  @override
-  List<CookingStep> get cookingSteps {
-    if (_cookingSteps is EqualUnmodifiableListView) return _cookingSteps;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cookingSteps);
-  }
 
   @override
   String toString() {
-    return 'RecipeDescriptionState.successStartCooking(recipe: $recipe, ingredients: $ingredients, cookingSteps: $cookingSteps)';
+    return 'RecipeDescriptionState.successStartCooking(recipe: $recipe)';
   }
 
   @override
@@ -354,19 +279,11 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SuccsessStartCooking &&
-            (identical(other.recipe, recipe) || other.recipe == recipe) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients) &&
-            const DeepCollectionEquality()
-                .equals(other._cookingSteps, _cookingSteps));
+            (identical(other.recipe, recipe) || other.recipe == recipe));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      recipe,
-      const DeepCollectionEquality().hash(_ingredients),
-      const DeepCollectionEquality().hash(_cookingSteps));
+  int get hashCode => Object.hash(runtimeType, recipe);
 
   @JsonKey(ignore: true)
   @override
@@ -379,62 +296,41 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
-    return successStartCooking(recipe, ingredients, cookingSteps);
+    return successStartCooking(recipe);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
-    return successStartCooking?.call(recipe, ingredients, cookingSteps);
+    return successStartCooking?.call(recipe);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
     if (successStartCooking != null) {
-      return successStartCooking(recipe, ingredients, cookingSteps);
+      return successStartCooking(recipe);
     }
     return orElse();
   }
@@ -482,14 +378,10 @@ class _$_SuccsessStartCooking implements _SuccsessStartCooking {
 }
 
 abstract class _SuccsessStartCooking implements RecipeDescriptionState {
-  const factory _SuccsessStartCooking(
-      {required final Recipe recipe,
-      required final List<Ingredient> ingredients,
-      required final List<CookingStep> cookingSteps}) = _$_SuccsessStartCooking;
+  const factory _SuccsessStartCooking({required final Recipe recipe}) =
+      _$_SuccsessStartCooking;
 
   Recipe get recipe;
-  List<Ingredient> get ingredients;
-  List<CookingStep> get cookingSteps;
   @JsonKey(ignore: true)
   _$$_SuccsessStartCookingCopyWith<_$_SuccsessStartCooking> get copyWith =>
       throw _privateConstructorUsedError;
@@ -501,12 +393,7 @@ abstract class _$$_SuccsessPrepareCookingCopyWith<$Res> {
           $Res Function(_$_SuccsessPrepareCooking) then) =
       __$$_SuccsessPrepareCookingCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {Recipe recipe,
-      List<Ingredient> ingredients,
-      List<CookingStep> cookingSteps,
-      List<Comment> comments,
-      List<Account> accounts});
+  $Res call({Recipe recipe, List<Comment> comments});
 
   $RecipeCopyWith<$Res> get recipe;
 }
@@ -524,32 +411,17 @@ class __$$_SuccsessPrepareCookingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipe = null,
-    Object? ingredients = null,
-    Object? cookingSteps = null,
     Object? comments = null,
-    Object? accounts = null,
   }) {
     return _then(_$_SuccsessPrepareCooking(
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as Recipe,
-      ingredients: null == ingredients
-          ? _value._ingredients
-          : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<Ingredient>,
-      cookingSteps: null == cookingSteps
-          ? _value._cookingSteps
-          : cookingSteps // ignore: cast_nullable_to_non_nullable
-              as List<CookingStep>,
       comments: null == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<Comment>,
-      accounts: null == accounts
-          ? _value._accounts
-          : accounts // ignore: cast_nullable_to_non_nullable
-              as List<Account>,
     ));
   }
 
@@ -566,34 +438,11 @@ class __$$_SuccsessPrepareCookingCopyWithImpl<$Res>
 
 class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
   const _$_SuccsessPrepareCooking(
-      {required this.recipe,
-      required final List<Ingredient> ingredients,
-      required final List<CookingStep> cookingSteps,
-      required final List<Comment> comments,
-      required final List<Account> accounts})
-      : _ingredients = ingredients,
-        _cookingSteps = cookingSteps,
-        _comments = comments,
-        _accounts = accounts;
+      {required this.recipe, required final List<Comment> comments})
+      : _comments = comments;
 
   @override
   final Recipe recipe;
-  final List<Ingredient> _ingredients;
-  @override
-  List<Ingredient> get ingredients {
-    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ingredients);
-  }
-
-  final List<CookingStep> _cookingSteps;
-  @override
-  List<CookingStep> get cookingSteps {
-    if (_cookingSteps is EqualUnmodifiableListView) return _cookingSteps;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cookingSteps);
-  }
-
   final List<Comment> _comments;
   @override
   List<Comment> get comments {
@@ -602,17 +451,9 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
     return EqualUnmodifiableListView(_comments);
   }
 
-  final List<Account> _accounts;
-  @override
-  List<Account> get accounts {
-    if (_accounts is EqualUnmodifiableListView) return _accounts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_accounts);
-  }
-
   @override
   String toString() {
-    return 'RecipeDescriptionState.successPrepareCooking(recipe: $recipe, ingredients: $ingredients, cookingSteps: $cookingSteps, comments: $comments, accounts: $accounts)';
+    return 'RecipeDescriptionState.successPrepareCooking(recipe: $recipe, comments: $comments)';
   }
 
   @override
@@ -621,22 +462,12 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
         (other.runtimeType == runtimeType &&
             other is _$_SuccsessPrepareCooking &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients) &&
-            const DeepCollectionEquality()
-                .equals(other._cookingSteps, _cookingSteps) &&
-            const DeepCollectionEquality().equals(other._comments, _comments) &&
-            const DeepCollectionEquality().equals(other._accounts, _accounts));
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      recipe,
-      const DeepCollectionEquality().hash(_ingredients),
-      const DeepCollectionEquality().hash(_cookingSteps),
-      const DeepCollectionEquality().hash(_comments),
-      const DeepCollectionEquality().hash(_accounts));
+      runtimeType, recipe, const DeepCollectionEquality().hash(_comments));
 
   @JsonKey(ignore: true)
   @override
@@ -649,65 +480,41 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
   }) {
-    return successPrepareCooking(
-        recipe, ingredients, cookingSteps, comments, accounts);
+    return successPrepareCooking(recipe, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
   }) {
-    return successPrepareCooking?.call(
-        recipe, ingredients, cookingSteps, comments, accounts);
+    return successPrepareCooking?.call(recipe, comments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
     required TResult orElse(),
   }) {
     if (successPrepareCooking != null) {
-      return successPrepareCooking(
-          recipe, ingredients, cookingSteps, comments, accounts);
+      return successPrepareCooking(recipe, comments);
     }
     return orElse();
   }
@@ -757,16 +564,10 @@ class _$_SuccsessPrepareCooking implements _SuccsessPrepareCooking {
 abstract class _SuccsessPrepareCooking implements RecipeDescriptionState {
   const factory _SuccsessPrepareCooking(
       {required final Recipe recipe,
-      required final List<Ingredient> ingredients,
-      required final List<CookingStep> cookingSteps,
-      required final List<Comment> comments,
-      required final List<Account> accounts}) = _$_SuccsessPrepareCooking;
+      required final List<Comment> comments}) = _$_SuccsessPrepareCooking;
 
   Recipe get recipe;
-  List<Ingredient> get ingredients;
-  List<CookingStep> get cookingSteps;
   List<Comment> get comments;
-  List<Account> get accounts;
   @JsonKey(ignore: true)
   _$$_SuccsessPrepareCookingCopyWith<_$_SuccsessPrepareCooking> get copyWith =>
       throw _privateConstructorUsedError;
@@ -844,15 +645,8 @@ class _$_AddNewComment implements _AddNewComment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
@@ -864,15 +658,8 @@ class _$_AddNewComment implements _AddNewComment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
@@ -884,15 +671,8 @@ class _$_AddNewComment implements _AddNewComment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,
@@ -1018,15 +798,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)
-        successStartCooking,
-    required TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)
+    required TResult Function(Recipe recipe) successStartCooking,
+    required TResult Function(Recipe recipe, List<Comment> comments)
         successPrepareCooking,
     required TResult Function(List<Comment> comments) addNewComment,
     required TResult Function(Object? error) failure,
@@ -1038,15 +811,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult? Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult? Function(Recipe recipe)? successStartCooking,
+    TResult? Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult? Function(List<Comment> comments)? addNewComment,
     TResult? Function(Object? error)? failure,
@@ -1058,15 +824,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Recipe recipe, List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps)?
-        successStartCooking,
-    TResult Function(
-            Recipe recipe,
-            List<Ingredient> ingredients,
-            List<CookingStep> cookingSteps,
-            List<Comment> comments,
-            List<Account> accounts)?
+    TResult Function(Recipe recipe)? successStartCooking,
+    TResult Function(Recipe recipe, List<Comment> comments)?
         successPrepareCooking,
     TResult Function(List<Comment> comments)? addNewComment,
     TResult Function(Object? error)? failure,

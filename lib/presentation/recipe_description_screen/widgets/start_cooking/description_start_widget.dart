@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/presentation/components/title_time_widget.dart';
@@ -34,11 +36,11 @@ class DescriptionStartWidget extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             clipBehavior: Clip.hardEdge,
-            child: Image(
+            child: Image.file(
+              File(recipe.img),
               height: 220.38,
               width: double.infinity,
               fit: BoxFit.fitWidth,
-              image: AssetImage(recipe.img),
             ),
           ),
         ),

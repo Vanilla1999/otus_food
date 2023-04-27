@@ -14,21 +14,15 @@ import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare
 
 class RecipeDescriptionPrepare extends StatelessWidget {
   final Recipe recipe;
-  final List<Ingredient> ingredients;
-  final List<CookingStep> cookingSteps;
   final List<Comment> comments;
-  final List<Account> accounts;
   final ValueNotifier<List<Comment>> valueNotifier;
   final RecipeDescriptionCubit cubit;
 
   const RecipeDescriptionPrepare({
     Key? key,
     required this.recipe,
-    required this.ingredients,
-    required this.cookingSteps,
     required this.comments,
     required this.cubit,
-    required this.accounts,
     required this.valueNotifier,
   }) : super(key: key);
 
@@ -42,8 +36,8 @@ class RecipeDescriptionPrepare extends StatelessWidget {
           recipe: recipe,
           cubit: cubit,
         ),
-        IngridientsWidget(ingredients: ingredients),
-        CookingStepsWidget(cookingSteps: cookingSteps),
+        IngridientsWidget(ingredients: recipe.ingredients),
+        CookingStepsWidget(cookingSteps: recipe.cookingSteps),
         StartCookingButtonWidget(
           cubit: cubit,
         ),
@@ -54,7 +48,6 @@ class RecipeDescriptionPrepare extends StatelessWidget {
         ),
         CommentsWidget(
           comments: comments,
-          accounts: accounts,
           cubit: cubit,
           valueNotifier: valueNotifier,
         )

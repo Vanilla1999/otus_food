@@ -13,15 +13,11 @@ import 'package:otus_food/presentation/recipe_description_screen/widgets/start_c
 
 class RecipeDescriptionStart extends StatelessWidget {
   final Recipe recipe;
-  final List<Ingredient> ingredients;
-  final List<CookingStep> cookingSteps;
   final RecipeDescriptionCubit cubit;
 
   const RecipeDescriptionStart(
       {Key? key,
       required this.recipe,
-      required this.ingredients,
-      required this.cookingSteps,
       required this.cubit})
       : super(key: key);
 
@@ -36,8 +32,8 @@ class RecipeDescriptionStart extends StatelessWidget {
             DescriptionStartWidget(
               recipe: recipe,
             ),
-            IngridientsWidget(ingredients: ingredients),
-            CookingStepsStartCookingWidget(cookingSteps: cookingSteps),
+            IngridientsWidget(ingredients: recipe.ingredients),
+            CookingStepsStartCookingWidget(cookingSteps: recipe.cookingSteps),
             StopCookingButtonWidget(
               cubit: cubit,
             ),

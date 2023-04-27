@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:otus_food/data/database/dto/ingredient_hive.dart';
 
 part 'ingredient.freezed.dart';
 
@@ -9,4 +10,10 @@ class Ingredient with _$Ingredient {
     required String name,
     required String amount,
   }) = _Ingredient;
+}
+
+extension ModelToDb on Ingredient {
+  IngredientHive toDb() {
+    return IngredientHive(recipeId: recipeId, name: name, amount: amount);
+  }
 }

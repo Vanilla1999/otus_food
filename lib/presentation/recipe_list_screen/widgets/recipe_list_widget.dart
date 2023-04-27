@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
@@ -44,11 +46,11 @@ class _RecipeItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image(
+                Image.file(
+                  File(recipe.img),
                   height: double.infinity,
                   width: 149,
                   fit: BoxFit.cover,
-                  image: AssetImage(recipe.img),
                 ),
                 Expanded(
                   child: Padding(

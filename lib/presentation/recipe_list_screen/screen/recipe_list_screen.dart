@@ -24,7 +24,7 @@ class RecipeListScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: state.when(
-        loading: () => const CircularProgressIndicator(),
+        loading: () => const Center(child: CircularProgressIndicator()),
         success: (recipeList) => RecipeListWidget(
           recipeList: recipeList,
         ),

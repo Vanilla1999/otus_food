@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:otus_food/data/model/account.dart';
 import 'package:otus_food/data/model/comment.dart';
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_cubit.dart';
 
@@ -9,9 +8,8 @@ class CommentsWidget extends StatelessWidget {
   final ValueNotifier<List<Comment>> valueNotifier;
   final RecipeDescriptionCubit cubit;
   final List<Comment> comments;
-  final List<Account> accounts;
 
-  const CommentsWidget({Key? key, required this.comments, required this.accounts, required this.cubit, required this.valueNotifier})
+  const CommentsWidget({Key? key, required this.comments, required this.cubit, required this.valueNotifier})
       : super(key: key);
 
   @override
@@ -20,7 +18,6 @@ class CommentsWidget extends StatelessWidget {
       children: [
         _CommentsListWidget(
           comments: comments,
-          accounts: accounts,
           valueNotifier: valueNotifier,
         ),
         Padding(
@@ -34,13 +31,11 @@ class CommentsWidget extends StatelessWidget {
 
 class _CommentsListWidget extends StatefulWidget {
   final List<Comment> comments;
-  final List<Account> accounts;
   final ValueNotifier<List<Comment>> valueNotifier;
 
   const _CommentsListWidget(
       {Key? key,
       required this.comments,
-      required this.accounts,
       required this.valueNotifier})
       : super(key: key);
 
@@ -68,9 +63,6 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
               child: ListView.separated(
                   physics: const ScrollPhysics(),
                   itemBuilder: (context, index) {
-                    final account = widget.accounts.firstWhere(
-                            (element) =>
-                        element.id == value[index].accountId);
                     final comment = value[index];
                     final commentDate =
                     DateTime.fromMillisecondsSinceEpoch(comment.time);
@@ -86,7 +78,7 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
                             child: Image(
                                 height: 63,
                                 width: 63,
-                                image: AssetImage(account.img)),
+                                image: AssetImage(comment.accountImg)),
                           ),
                         ),
                         const SizedBox(
@@ -100,7 +92,7 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      account.name,
+                                      comment.accountName,
                                       style: const TextStyle(
                                           color: Color(0xff2ECC71),
                                           fontSize: 16,

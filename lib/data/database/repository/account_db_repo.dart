@@ -1,6 +1,6 @@
 import 'package:otus_food/data/model/account.dart';
 
-class MockAccountRepo extends AccountRepo{
+class MockAccountRepo extends AccountDbRepo{
   @override
   Future<Account> getAccountById(int recipeId) {
     return Future(() =>
@@ -10,7 +10,7 @@ class MockAccountRepo extends AccountRepo{
 
 }
 
-abstract class AccountRepo{
+abstract class AccountDbRepo{
 
   Future<Account> getAccountById(int accountId);
 

@@ -54,14 +54,11 @@ class RecipeDescriptionScreen extends StatelessWidget {
     return state.maybeWhen(
       loading: () => const CircularProgressIndicator(),
       successPrepareCooking:
-          (recipe, ingredients, cookingSteps, comments, accounts) {
+          (recipe,comments) {
         valueNotifier.value = comments;
         return RecipeDescriptionPrepare(
           recipe: recipe,
-          ingredients: ingredients,
-          cookingSteps: cookingSteps,
           comments: comments,
-          accounts: accounts,
           cubit: context.read<RecipeDescriptionCubit>(),
           valueNotifier: valueNotifier,
         );
@@ -69,11 +66,9 @@ class RecipeDescriptionScreen extends StatelessWidget {
       failure: (error) => Container(
         color: Colors.red,
       ),
-      successStartCooking: (recipe, ingredients, cookingSteps) =>
+      successStartCooking: (recipe) =>
           RecipeDescriptionStart(
         recipe: recipe,
-        ingredients: ingredients,
-        cookingSteps: cookingSteps,
         cubit: context.read<RecipeDescriptionCubit>(),
       ),
       orElse: () => Container(
