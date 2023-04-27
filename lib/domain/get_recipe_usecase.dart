@@ -21,8 +21,10 @@ class RecipeUseCaseImpl extends RecipeUseCase {
         final recipesIdFromNet = await _recipeNetworkRepo.getRecipesId();
         final recipesFromNet =
             await _recipeNetworkRepo.getRecipes(recipesIdFromNet);
-        final recipeWithDownloadImage = await _imageDowloadRepo.downloadRecipeImages(recipesFromNet);
-        await _recipeDb.saveRecipes(await _removeUnUnicData(recipeWithDownloadImage,await _recipeDb.getRecipes()));
+        final recipeWithDownloadImage =
+            await _imageDowloadRepo.downloadRecipeImages(recipesFromNet);
+        await _recipeDb.saveRecipes(await _removeUnUnicDataAndEmptyImg(
+            recipeWithDownloadImage, await _recipeDb.getRecipes()));
         return DbAnswer.success(list: recipeWithDownloadImage);
       } else {
         return DbAnswer.success(list: await _recipeDb.getRecipes());
@@ -31,8 +33,23 @@ class RecipeUseCaseImpl extends RecipeUseCase {
       return DbAnswer.failure(error: e);
     }
   }
-  Future<List<Recipe>> _removeUnUnicData(List<Recipe> netData , List<Recipe> dbData)async{
-    return List.from(netData.toSet().difference(dbData.toSet()));
+
+  Future<List<Recipe>> _removeUnUnicDataAndEmptyImg(
+      List<Recipe> netData, List<Recipe> dbData) async {
+    final removableList = <Recipe>[];
+    for (var recipeDb in dbData) {
+      if (netData.where((recipe) => recipe.id == recipeDb.id).isNotEmpty) {
+        if (recipeDb.img.contains("пусто")) {
+          removableList.add(recipeDb);
+        }
+      }
+    }
+    List<Recipe> newList =
+        List.from(netData.toSet().difference(dbData.toSet()));
+    for (var removable in removableList) {
+      newList.remove(removable);
+    }
+    return newList;
   }
 }
 

@@ -211,7 +211,7 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                     onPressed: () {
                       if (textEditingController.text.isNotEmpty) {
                         widget.cubit
-                            .addNewComment(textEditingController.text, "");
+                            .addNewComment(textEditingController.text, "assets/images/comment_image.jpg");
                       }
                     },
                   ),

@@ -45,8 +45,8 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
             .now()
             .millisecondsSinceEpoch,
         img: img,
-        accountName: '',
-        accountImg: ''));
+        accountName: 'Vanilla',
+        accountImg: 'assets/images/account_image.jpg'));
     emit(RecipeDescriptionState.addNewComment(comments: _comments.toList()));
   }
 }
