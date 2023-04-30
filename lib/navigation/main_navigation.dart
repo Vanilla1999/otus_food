@@ -4,16 +4,21 @@ import 'package:otus_food/data/model/recipe.dart';
 import 'screen_factory.dart';
 
 abstract class MainNavigationRouteNames {
-  static const recipeListScreen = '/';
+  static const home = '/';
+  static const recipeListScreen = '/recipes';
   static const recipeDescriptionScreen = '/recipeDescription';
 }
 
 class MainNavigation {
   static final _screenFactory = ScreenFactory();
-  static const initialRoute = MainNavigationRouteNames.recipeListScreen;
+  static const initialRoute = MainNavigationRouteNames.home;
 
   Route<Object> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case MainNavigationRouteNames.home:
+        return MaterialPageRoute(
+          builder: (_) => _screenFactory.home(),
+        );
       case MainNavigationRouteNames.recipeListScreen:
         return MaterialPageRoute(
           builder: (_) => _screenFactory.makeRecipeListScreen(),

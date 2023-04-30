@@ -1,0 +1,48 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "8663320a860b00f26e94d3d15c9ba99a",
+      "css": "megaphone",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "d73eceadda1f594cec0536087539afbf",
+      "css": "heart-1",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d18071bbf8f0a8cec8d1f556c91c6af0",
+      "css": "heart-empty",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "a5a6c9d55ef642d0b3a541a31d65a70a",
+      "css": "pizza_slice",
+      "code": 63512,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "0b0ecfae4b5c2c6d3020c394c8da6656",
+      "css": "megaphone1",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M770.8 104.2C812.5 104.2 854.2 104.2 895.8 104.2 895.8 354.2 895.8 604.2 895.8 854.2 771.8 830.4 653.7 788.7 541.7 729.2 470.9 766.9 394.5 780.8 312.5 770.8 278.7 677.4 250.9 580.2 229.2 479.2 243.1 423.6 256.9 368.1 270.8 312.5 448.4 258.3 615.1 188.8 770.8 104.2ZM62.5 354.2C112.2 373.8 140 415.4 145.8 479.2 131.9 520.8 118.1 562.5 104.2 604.2 63.9 525.2 50 441.8 62.5 354.2Z",
+        "width": 1000
+      },
+      "search": [
+        "megaphone1"
+      ]
+    }
+  ]
+}
