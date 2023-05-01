@@ -11,8 +11,7 @@ class ImageDowloadRepo {
   Future<List<Recipe>> downloadRecipeImages(List<Recipe> recipes) async {
     var recipeList = <Recipe>[];
     var futures = <Future<void>>[];
-    final fileNotFound =
-        await getImageFileFromAssets("assets/images/пусто.jpg");
+    final fileNotFound =  await _getImageFileFromMemory("assets/images/пусто.jpg");
     for (var recipe in recipes) {
       futures.add(Future(() async => {
             recipeList.add(await _downloadForRecipe(recipe, fileNotFound.path))
@@ -24,11 +23,11 @@ class ImageDowloadRepo {
 
   Future<Recipe> _downloadForRecipe(Recipe recipe, String fileNotFound) async {
     final Recipe newRecipe;
-    final exist = await _checkExist(recipe.img);
+    final exist = await _checkExist(recipe.img.split("/").last);
     if (exist) {
-      final Directory tempDir = await getApplicationDocumentsDirectory();
+      final File file = await _getImageFileFromMemory(recipe.img.split("/").last);
       newRecipe = recipe.copyWith(
-          img: File('${tempDir.path}/${recipe.img.split("/").last}').path);
+          img: file.path);
     } else {
       if (recipe.img.isNotEmpty) {
         final file = await getImageFileFromNet(recipe.img, fileNotFound);
@@ -46,9 +45,9 @@ class ImageDowloadRepo {
     }
   }
 
-  Future<bool> _checkExist(String imgNet) async {
+  Future<bool> _checkExist(String img) async {
     final Directory tempDir = await getApplicationDocumentsDirectory();
-    return await File('${tempDir.path}/${imgNet.split("/").last}').exists();
+    return await File('${tempDir.path}/$img').exists();
   }
 
   Future<File> getImageFileFromAssets(String filename) async {
@@ -58,6 +57,26 @@ class ImageDowloadRepo {
     await file.writeAsBytes(byteData.buffer
         .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
     return file;
+  }
+
+  Future<void> downloadAssetToMemory()  async{
+   final existEmpty = await _checkExist("assets/images/пусто.jpg");
+   final existDefaultCommentImg = await _checkExist("assets/images/comment_image.jpg");
+   final existDefaultAccountLogo = await _checkExist("assets/images/default_account_logo.png");
+   if(!existEmpty) {
+     getImageFileFromAssets("assets/images/пусто.jpg");
+   }
+   if(!existDefaultCommentImg) {
+     getImageFileFromAssets("assets/images/comment_image.jpg");
+   }
+   if(!existDefaultAccountLogo) {
+     getImageFileFromAssets("assets/images/default_account_logo.png");
+   }
+  }
+
+  Future<File> _getImageFileFromMemory(String filename)async{
+    final Directory tempDir = await getApplicationDocumentsDirectory();
+    return File('${tempDir.path}/$filename');
   }
 
   Future<File> getImageFileFromNet(String filepath, String fileNotFound) async {

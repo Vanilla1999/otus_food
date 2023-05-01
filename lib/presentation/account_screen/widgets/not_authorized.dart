@@ -8,25 +8,26 @@ class NotAuthorized extends StatelessWidget {
   final TextEditingController loginController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   NotAuthorized({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: [
-          Center(
-            child: Container(
-                height: 123,
-                width: 123,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: Image.asset("assets/images/logo.webp")),
-          ),
-          const SizedBox(
-            height: 42,
-          ),
-          Form(
-            key: _formKey,
-              child: Column(
+      children: [
+        Center(
+          child: Container(
+              height: 123,
+              width: 123,
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              child: Image.asset("assets/images/logo.webp")),
+        ),
+        const SizedBox(
+          height: 42,
+        ),
+        Form(
+          key: _formKey,
+          child: Column(
             children: [
               TextFormField(
                 validator: (value) {
@@ -39,9 +40,8 @@ class NotAuthorized extends StatelessWidget {
                 maxLines: 1,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none
-                    ),
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none),
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Введите email",
@@ -57,6 +57,10 @@ class NotAuthorized extends StatelessWidget {
                 validator: (value) {
                   if (!value!.isNotEmpty) {
                     return 'Пароль не должен быть пустым';
+                  }else{
+                    if (value.length<6) {
+                      return 'Пароль должен быть длинее 6 символов';
+                    }
                   }
                   return null;
                 },
@@ -66,9 +70,8 @@ class NotAuthorized extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none
-                    ),
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none),
                     hintText: "пароль",
                     contentPadding:
                         const EdgeInsets.only(top: 21, left: 15, bottom: 20),
@@ -92,22 +95,27 @@ class NotAuthorized extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xff2ECC71))),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    cubit.registeration(loginController.text, passwordController.text);
+                  }
+                },
+                child: const Center(
+                  child: Text("Зарегистрироваться",
+                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                ),
+              ),
             ],
-          )),
-          const SizedBox(
-            height: 16,
           ),
-          ElevatedButton(
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(const Color(0xff2ECC71))),
-            onPressed: () {},
-            child: const Center(
-              child: Text("Зарегистрироваться",
-                  style: TextStyle(color: Colors.white, fontSize: 16)),
-            ),
-          ),
-        ],
-      );
+        )
+      ],
+    );
   }
 }

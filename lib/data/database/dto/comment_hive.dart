@@ -12,7 +12,7 @@ class CommentHive with _$CommentHive {
   factory CommentHive({
     @HiveField(0)required int id,
     @HiveField(1) required int recipeId,
-    @HiveField(2)required int accountId,
+    @HiveField(2)required String accountId,
     @HiveField(3)required String accountName,
     @HiveField(4)required String accountImg,
     @HiveField(5)required String text,

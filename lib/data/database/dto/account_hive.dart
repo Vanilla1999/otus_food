@@ -11,7 +11,7 @@ part 'account_hive.g.dart';
 class AccountHive with _$AccountHive{
   @HiveType(typeId: 5)
   factory AccountHive({
-    @HiveField(0) required int id,
+    @HiveField(0) required String id,
     @HiveField(1) required String name,
     @HiveField(2) required String img,
   }) = _AccountHive;

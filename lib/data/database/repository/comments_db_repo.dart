@@ -10,7 +10,7 @@ class MockCommentRepo extends CommentDbRepo {
       Comment(
               id: 1,
               recipeId: 1,
-              accountId: 1,
+              accountId: "1",
               time:1682091139000,
               text:
                   "Я не большой любитель рыбы, но решила приготовить по этому рецепту и просто влюбилась!",
@@ -18,7 +18,7 @@ class MockCommentRepo extends CommentDbRepo {
       Comment(
               id: 1,
               recipeId: 1,
-              accountId: 1,
+              accountId: "1",
               time:1682091139000,
               text:
                   "Я не большой любитель рыбы, но решила приготовить по этому рецепту и просто влюбилась!",

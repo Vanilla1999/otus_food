@@ -9,9 +9,11 @@ import 'package:otus_food/data/network/datasource/network_client.dart';
 import 'package:otus_food/data/network/repository/recipe_network_repository.dart';
 import 'package:otus_food/data/database/repository/account_db_repo.dart';
 import 'package:otus_food/data/database/repository/comments_db_repo.dart';
+import 'package:otus_food/domain/exit_from_account_usecase.dart';
 import 'package:otus_food/domain/get_account.dart';
 import 'package:otus_food/domain/get_comments_by_recipe_id.dart';
 import 'package:otus_food/domain/get_recipe_usecase.dart';
+import 'package:otus_food/domain/save_account_usecase.dart';
 import 'package:otus_food/firebase_options.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
 
@@ -29,6 +31,9 @@ Future<void> main() async {
   getIt.registerSingleton<RecipeUseCase>(RecipeUseCaseImpl());
   getIt.registerSingleton<GetCommentsByRecipeId>(GetCommentsByRecipeId());
   getIt.registerSingleton<GetAccount>(GetAccount());
+  getIt.registerSingleton<SaveAccountUseCase>(SaveAccountUseCase());
+  getIt.registerSingleton<ExitFromAccount>(ExitFromAccount());
+  ImageDowloadRepo().downloadAssetToMemory();
   runApp(const MyApp());
 }
 

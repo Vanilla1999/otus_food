@@ -7,9 +7,17 @@ class MockAccountRepo extends AccountDbRepo {
   @override
   Future<Account?> getAccount() {
     return Future(() => Account(
-        id: 1,
+        id: "1",
         name: "annna_obrazsova",
         img: "assets/images/account_image.jpg"));
+  }
+
+  @override
+  Future<void> saveAccount(Account account) async {}
+
+  @override
+  Future<void> removeAccountFromDb()async {
+
   }
 }
 
@@ -25,8 +33,22 @@ class AccountRepoImpl extends AccountDbRepo {
       return accountHive.toModel();
     }
   }
+
+  @override
+  Future<void> saveAccount(Account account) async {
+    await _hiveDataSource.saveAccount(account.toDb());
+  }
+
+  @override
+  Future<void> removeAccountFromDb()async {
+    await _hiveDataSource.clearAccount();
+  }
 }
 
 abstract class AccountDbRepo {
   Future<Account?> getAccount();
+
+  Future<void> saveAccount(Account account);
+
+  Future<void> removeAccountFromDb();
 }

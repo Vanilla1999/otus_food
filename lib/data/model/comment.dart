@@ -8,7 +8,7 @@ class Comment with _$Comment {
   factory Comment({
     required int id,
     required int recipeId,
-    required int accountId,
+    required String accountId,
     required String accountName,
     required String accountImg,
     required String text,

@@ -39,7 +39,7 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
     _comments.add(Comment(
         id: 0,
         recipeId: 0,
-        accountId: 1,
+        accountId: "1",
         text: comment,
         time: DateTime
             .now()
