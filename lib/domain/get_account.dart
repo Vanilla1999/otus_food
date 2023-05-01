@@ -10,9 +10,9 @@ class GetAccount {
   Future<DbAnswer<Account>> getAccount() async {
     try {
       final list = <Account>[];
-      final comments = await _accountDbRepo.getAccount();
-      if(comments!= null) {
-        list.add(comments);
+      final account = await _accountDbRepo.getAccount();
+      if(account!= null) {
+        list.add(account);
       }
       return DbAnswer.success(list: list);
     } catch (e) {

@@ -13,7 +13,8 @@ class AccountHive with _$AccountHive{
   factory AccountHive({
     @HiveField(0) required String id,
     @HiveField(1) required String name,
-    @HiveField(2) required String img,
+    @HiveField(2) required String password,
+    @HiveField(3) required String img,
   }) = _AccountHive;
 }
 extension DbToModel on AccountHive {
@@ -21,7 +22,8 @@ extension DbToModel on AccountHive {
     return Account(
         id:id,
   name:name,
-        img: img
+        img: img,
+      password: password
     );
   }
 }

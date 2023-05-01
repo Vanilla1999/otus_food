@@ -9,7 +9,7 @@ class MockAccountRepo extends AccountDbRepo {
     return Future(() => Account(
         id: "1",
         name: "annna_obrazsova",
-        img: "assets/images/account_image.jpg"));
+        img: "assets/images/account_image.jpg", password: '1'));
   }
 
   @override

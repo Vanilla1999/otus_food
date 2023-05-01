@@ -28,10 +28,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
     result.map(
         success: (account) => {
               if (account.list.isNotEmpty)
-                {
-                  emit(AccountScreenState.authorized(
-                      account: account.list.first))
-                }
+                {auth(account.list.first.name,account.list.first.password)}
               else
                 {emit(const AccountScreenState.notAuthorized())}
             },
@@ -51,7 +48,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
     });
   }
 
-  Future<void> auth(String login, String password) async {
+  Future<void> auth(String login,String password) async {
     print("auth");
     emit(const AccountScreenState.loading());
     try {
@@ -63,7 +60,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
       _saveAccount(Account(
           id: user.user!.uid,
           name: user.user?.email ?? "",
-          img: '${tempDir.path}/assets/images/default_account_logo.png'));
+          img: '${tempDir.path}/assets/images/default_account_logo.png', password: password));
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
@@ -88,7 +85,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
       );
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
-      _registerTimerForWaitVerification();
+      _registerTimerForWaitVerification(password);
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'email-already-in-use') {
@@ -103,7 +100,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
     }
   }
 
-  Future<void> _registerTimerForWaitVerification() async {
+  Future<void> _registerTimerForWaitVerification(String password) async {
     Timer.periodic(const Duration(seconds: 4), (timer) async {
       await FirebaseAuth.instance.currentUser!.reload();
       var user = FirebaseAuth.instance.currentUser!;
@@ -112,6 +109,7 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
         _saveAccount(Account(
             id: user.uid,
             name: user.email ?? "",
+            password: password,
             img: '${tempDir.path}/assets/images/default_account_logo.png'));
         timer.cancel();
       }
@@ -128,14 +126,12 @@ class AccountScreenCubit extends Cubit<AccountScreenState> {
             AccountScreenState.failure(error: error.error, textError: '')));
   }
 
-  Future<void> exit() async{
-   final result = await exitFromAccountUsecase.exitFromAccount();
-   await FirebaseAuth.instance.signOut();
-   result.map(
-       success: (succ) =>
-           emit(const AccountScreenState.notAuthorized()),
-       failure: (error) => emit(
-           AccountScreenState.failure(error: error.error, textError: '')));
+  Future<void> exit() async {
+    final result = await exitFromAccountUsecase.exitFromAccount();
+    await FirebaseAuth.instance.signOut();
+    result.map(
+        success: (succ) => emit(const AccountScreenState.notAuthorized()),
+        failure: (error) => emit(
+            AccountScreenState.failure(error: error.error, textError: '')));
   }
-
 }

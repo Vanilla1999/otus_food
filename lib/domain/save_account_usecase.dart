@@ -8,7 +8,8 @@ class SaveAccountUseCase {
 
   Future<DbAnswerVoid> saveAccount(Account account) async {
     try {
-     await _accountDbRepo.saveAccount(account);
+      final result = await _accountDbRepo.getAccount();
+      if (result == null) await _accountDbRepo.saveAccount(account);
       return const DbAnswerVoid.success();
     } catch (e) {
       return DbAnswerVoid.failure(error: e);
