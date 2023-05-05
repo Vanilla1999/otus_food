@@ -440,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -712,6 +720,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0+1"
+  rive:
+    dependency: "direct main"
+    description:
+      name: rive
+      sha256: f7f365ee0e6cf0af99fb239bc3424370ca6ee2b9ad6fc879b1a79ba5e3b40770
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.4"
+  rive_common:
+    dependency: transitive
+    description:
+      name: rive_common
+      sha256: "7c4be235d75c34a0f257b4487c0cc314188aa2f9a6c177d34f02df53d7c25831"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   shelf:
     dependency: transitive
     description:

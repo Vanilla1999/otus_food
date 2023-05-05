@@ -6,6 +6,7 @@ import 'package:otus_food/presentation/components/title_time_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_cubit.dart';
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_state.dart';
 import 'package:otus_food/utils/extention.dart';
+import 'package:rive/rive.dart';
 
 class DescriptionPrepareWidget extends StatelessWidget {
   final Recipe recipe;
@@ -27,8 +28,12 @@ class DescriptionPrepareWidget extends StatelessWidget {
                   time: recipe.time.timeToStringRecipe(), name: recipe.name),
             ),
           ),
-          _FavoriteRecipe(
-            cubit: cubit,
+          SizedBox(
+            height: 70,
+            width: 70,
+            child: _FavoriteRecipe(
+              cubit: cubit,
+            ),
           ),
           const SizedBox(
             width: 19,
@@ -58,7 +63,10 @@ class DescriptionPrepareWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15, right: 17),
             child: CustomPaint(
               painter: _CustomFavoritePaint(2),
-              child: Container(height: 220.38,width: double.infinity,),
+              child: Container(
+                height: 220.38,
+                width: double.infinity,
+              ),
             ),
           ),
         ],
@@ -78,29 +86,45 @@ class _FavoriteRecipe extends StatefulWidget {
 
 class _FavoriteRecipeState extends State<_FavoriteRecipe> {
   Color? _color;
+  late RiveAnimationController _controller;
+  late SMIInput<bool>? _input;
 
+  void _onInit(Artboard art) {
+    var ctrl = StateMachineController.fromArtboard(art, 'State Machine 1')
+        as StateMachineController;
+    ctrl.isActive = true;
+    art.addController(ctrl);
+    setState(() {
+      _controller = ctrl;
+      _input = ctrl.findInput<bool>("switch");
+      _input!.value = false;
+    });
+  }
+
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () {
-          setState(() {
-            if (_color == null) {
-              _color = const Color(0xffe74c3c);
-            } else {
-              _color = null;
-            }
-          });
-        },
-        icon: Icon(
-          Icons.favorite,
-          size: 30,
-          color: _color,
-        ));
+    return InkWell(
+      borderRadius: BorderRadius.circular(360),
+      onTap: () {
+        setState(() {
+          _input!.value = flag;
+          flag = !flag;
+        });
+      },
+      child: Container(
+        child: RiveAnimation.asset(
+          'assets/rive/hart.riv',
+          onInit: _onInit,
+        ),
+      ),
+    );
   }
 }
 
 class _CustomFavoritePaint extends CustomPainter {
   final int number;
+
   _CustomFavoritePaint(this.number);
 
   var painte = Paint()
@@ -108,14 +132,13 @@ class _CustomFavoritePaint extends CustomPainter {
     ..style = PaintingStyle.fill;
   var path = Path();
 
-
   @override
   void paint(Canvas canvas, Size size) {
-    _drawContainer(canvas,size);
-    _drawNumber(canvas,size,number);
+    _drawContainer(canvas, size);
+    _drawNumber(canvas, size, number);
   }
 
-  void _drawNumber(Canvas canvas,Size size,int number){
+  void _drawNumber(Canvas canvas, Size size, int number) {
     const textStyle = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.w800,
@@ -133,16 +156,17 @@ class _CustomFavoritePaint extends CustomPainter {
       minWidth: 0,
       maxWidth: 24,
     );
-    textPainter.paint(canvas, Offset(size.width - 7-12,  size.height-17.46-16));
+    textPainter.paint(
+        canvas, Offset(size.width - 7 - 12, size.height - 17.46 - 16));
   }
 
-  void _drawContainer(Canvas canvas,Size size){
-    path.moveTo(size.width-66, size.height-13.46-23);
-    path.lineTo(size.width, size.height-13.46-23);
-    path.lineTo(size.width, size.height-13.46);
-    path.lineTo(size.width-66, size.height-13.46);
-    path.lineTo(size.width-40.62, size.height-13.46 - (23/2));
-    path.lineTo(size.width-66, size.height-13.46-23);
+  void _drawContainer(Canvas canvas, Size size) {
+    path.moveTo(size.width - 66, size.height - 13.46 - 23);
+    path.lineTo(size.width, size.height - 13.46 - 23);
+    path.lineTo(size.width, size.height - 13.46);
+    path.lineTo(size.width - 66, size.height - 13.46);
+    path.lineTo(size.width - 40.62, size.height - 13.46 - (23 / 2));
+    path.lineTo(size.width - 66, size.height - 13.46 - 23);
     canvas.drawPath(path, painte);
   }
 
