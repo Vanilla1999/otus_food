@@ -9,7 +9,11 @@ class CommentsWidget extends StatelessWidget {
   final RecipeDescriptionCubit cubit;
   final List<Comment> comments;
 
-  const CommentsWidget({Key? key, required this.comments, required this.cubit, required this.valueNotifier})
+  const CommentsWidget(
+      {Key? key,
+      required this.comments,
+      required this.cubit,
+      required this.valueNotifier})
       : super(key: key);
 
   @override
@@ -34,9 +38,7 @@ class _CommentsListWidget extends StatefulWidget {
   final ValueNotifier<List<Comment>> valueNotifier;
 
   const _CommentsListWidget(
-      {Key? key,
-      required this.comments,
-      required this.valueNotifier})
+      {Key? key, required this.comments, required this.valueNotifier})
       : super(key: key);
 
   @override
@@ -50,24 +52,32 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
     initializeDateFormatting();
   }
 
+  double _maxHeight(List<Comment> value) {
+    if (value.isEmpty) {
+      return 0;
+    } else {
+      return 264;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable:  widget.valueNotifier,
+        valueListenable: widget.valueNotifier,
         builder: (BuildContext context, List<Comment> value, Widget? child) {
           return Padding(
-            padding: const EdgeInsets.only(
-                top: 25, left: 17, right: 16, bottom: 48),
-            child: SizedBox(
-              height: 263,
+            padding:
+                const EdgeInsets.only(top: 25, left: 17, right: 16, bottom: 48),
+            child: Container(
+              constraints: BoxConstraints(maxHeight: _maxHeight(value)),
               child: ListView.separated(
                   physics: const ScrollPhysics(),
                   itemBuilder: (context, index) {
                     final comment = value[index];
                     final commentDate =
-                    DateTime.fromMillisecondsSinceEpoch(comment.time);
+                        DateTime.fromMillisecondsSinceEpoch(comment.time);
                     final commentDateString =
-                    DateFormat('dd.MM.yyyy').format(commentDate);
+                        DateFormat('dd.MM.yyyy').format(commentDate);
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -140,8 +150,7 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
                   itemCount: value.length),
             ),
           );
-        }
-    );
+        });
   }
 }
 
@@ -202,7 +211,10 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                 IconButton(
                   color: const Color(0xff165932),
                   icon: const Icon(Icons.image),
-                  onPressed: () {},
+                  onPressed: () {
+                    // widget.cubit
+                    //     .addPhotoToComment();
+                  },
                 ),
                 if (focus)
                   IconButton(
@@ -210,8 +222,8 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                     icon: const Icon(Icons.send),
                     onPressed: () {
                       if (textEditingController.text.isNotEmpty) {
-                        widget.cubit
-                            .addNewComment(textEditingController.text, "assets/images/comment_image.jpg");
+                        widget.cubit.addNewComment(textEditingController.text,
+                            "assets/images/comment_image.jpg");
                       }
                     },
                   ),
