@@ -1,5 +1,9 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:camera_camera/camera_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:otus_food/data/model/comment.dart';
@@ -10,12 +14,14 @@ class CommentsWidget extends StatelessWidget {
   final ValueNotifier<List<Comment>> valueNotifier;
   final RecipeDescriptionCubit cubit;
   final List<Comment> comments;
+  final ScrollController scrollController;
 
   const CommentsWidget(
       {Key? key,
       required this.comments,
       required this.cubit,
-      required this.valueNotifier})
+      required this.valueNotifier,
+      required this.scrollController})
       : super(key: key);
 
   @override
@@ -28,7 +34,7 @@ class CommentsWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 17, right: 16, bottom: 37),
-          child: _CustomEdittext(cubit: cubit),
+          child: _CustomEdittext(cubit: cubit, scrollController: scrollController,),
         )
       ],
     );
@@ -58,7 +64,7 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
     if (value.isEmpty) {
       return 0;
     } else {
-      return 264;
+      return 300;
     }
   }
 
@@ -67,13 +73,12 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
     return ValueListenableBuilder(
         valueListenable: widget.valueNotifier,
         builder: (BuildContext context, List<Comment> value, Widget? child) {
-          return Padding(
-            padding:
-                const EdgeInsets.only(top: 25, left: 17, right: 16, bottom: 48),
-            child: Container(
-              constraints: BoxConstraints(maxHeight: _maxHeight(value)),
+          return Container(
+            constraints: BoxConstraints(maxHeight: _maxHeight(value)),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 25, left: 17, right: 16, bottom: 48),
               child: ListView.separated(
-                  physics: const ScrollPhysics(),
                   itemBuilder: (context, index) {
                     final comment = value[index];
                     final commentDate =
@@ -158,8 +163,9 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
 
 class _CustomEdittext extends StatefulWidget {
   final RecipeDescriptionCubit cubit;
+  final ScrollController scrollController;
 
-  const _CustomEdittext({Key? key, required this.cubit}) : super(key: key);
+  const _CustomEdittext({Key? key, required this.cubit, required this.scrollController}) : super(key: key);
 
   @override
   State<_CustomEdittext> createState() => _CustomEdittextState();
@@ -167,6 +173,9 @@ class _CustomEdittext extends StatefulWidget {
 
 class _CustomEdittextState extends State<_CustomEdittext> {
   final TextEditingController textEditingController = TextEditingController();
+  final listPhotos = <String>[];
+  late StreamSubscription<bool> keyboardSubscription;
+  var isKeyboardVisible = false;
   bool focus = false;
   FocusNode _focus = FocusNode();
 
@@ -179,77 +188,150 @@ class _CustomEdittextState extends State<_CustomEdittext> {
   @override
   void initState() {
     super.initState();
+    var keyboardVisibilityController = KeyboardVisibilityController();
     _focus.addListener(_onFocusChange);
+    keyboardSubscription =
+        keyboardVisibilityController.onChange.listen((bool visible) {
+      setState(() {
+        isKeyboardVisible = visible;
+      });
+    });
+  }
+
+  double _paddingKeyboard(BuildContext context, bool isKeyboardVisible) {
+    if (isKeyboardVisible) {
+      widget.scrollController.animateTo(
+          widget.scrollController.position.maxScrollExtent+MediaQuery.of(context).viewInsets.bottom,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.linear);
+      return MediaQuery.of(context).viewInsets.bottom;
+    } else {
+      return 30.0;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-        border: Border.all(color: const Color(0xff165932), width: 2),
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 14, right: 14, bottom: 14),
-              child: TextField(
-                focusNode: _focus,
-                controller: textEditingController,
-                maxLines: 2,
-                decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    hintText: "оставить комментарий",
-                    hintStyle: TextStyle(color: Color(0xffC2C2C2))),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 30),
-            child: Row(
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: _paddingKeyboard(context, isKeyboardVisible)),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          border: Border.all(color: const Color(0xff165932), width: 2),
+        ),
+        child: Column(
+          children: [
+            Row(
               children: [
-                IconButton(
-                  color: const Color(0xff165932),
-                  icon: const Icon(Icons.image),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => CameraCamera(
-                              onFile: (file) {
-                                //photos.add(file);
-                                //When take foto you should close camera
-                                Navigator.pop(context);
-                                // setState(() {});
-                              },
-                            )));
-                  },
-                ),
-                if (focus)
-                  IconButton(
-                    color: const Color(0xff165932),
-                    icon: const Icon(Icons.send),
-                    onPressed: () {
-                      if (textEditingController.text.isNotEmpty) {
-                        widget.cubit.addNewComment(textEditingController.text,
-                            "assets/images/comment_image.jpg");
-                      }
-                    },
+                Flexible(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 14, right: 14, bottom: 14),
+                    child: TextField(
+                      focusNode: _focus,
+                      controller: textEditingController,
+                      maxLines: 2,
+                      decoration: const InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: "оставить комментарий",
+                          hintStyle: TextStyle(color: Color(0xffC2C2C2))),
+                    ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        color: const Color(0xff165932),
+                        icon: const Icon(Icons.image),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => CameraCamera(
+                                        onFile: (file) {
+                                          //photos.add(file);
+                                          //When take foto you should close camera
+                                          Navigator.pop(context);
+                                          setState(() {
+                                            listPhotos.add(file.path);
+                                          });
+                                        },
+                                      )));
+                        },
+                      ),
+                      if (focus)
+                        IconButton(
+                          color: const Color(0xff165932),
+                          icon: const Icon(Icons.send),
+                          onPressed: () {
+                            if (textEditingController.text.isNotEmpty) {
+                              widget.cubit.addNewComment(
+                                  textEditingController.text,
+                                  "assets/images/comment_image.jpg");
+                            }
+                          },
+                        ),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ],
+            const SizedBox(
+              height: 14,
+            ),
+            SizedBox(
+              height: _maxHeight(listPhotos),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          clipBehavior: Clip.antiAlias,
+                          child: Image.file(
+                            File(listPhotos[index]),
+                            height: 63,
+                            width: 63,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        width: 14,
+                      );
+                    },
+                    itemCount: listPhotos.length),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
+  double _maxHeight(List<String> value) {
+    if (value.isEmpty) {
+      return 0;
+    } else {
+      return 100;
+    }
+  }
+
   @override
   void dispose() {
-    super.dispose();
+    keyboardSubscription.cancel();
     _focus.removeListener(_onFocusChange);
     _focus.dispose();
+    super.dispose();
   }
 }

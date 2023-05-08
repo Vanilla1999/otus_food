@@ -17,8 +17,8 @@ class RecipeDescriptionPrepare extends StatelessWidget {
   final List<Comment> comments;
   final ValueNotifier<List<Comment>> valueNotifier;
   final RecipeDescriptionCubit cubit;
-
-  const RecipeDescriptionPrepare({
+ final ScrollController _controller = ScrollController();
+   RecipeDescriptionPrepare({
     Key? key,
     required this.recipe,
     required this.comments,
@@ -29,9 +29,12 @@ class RecipeDescriptionPrepare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const AppbarDescription(),
       backgroundColor: Colors.white,
-      body: ListView(physics: const BouncingScrollPhysics(), children: [
+      body: ListView(
+        controller: _controller,
+          physics: const BouncingScrollPhysics(), children: [
         DescriptionPrepareWidget(
           recipe: recipe,
           cubit: cubit,
@@ -50,6 +53,7 @@ class RecipeDescriptionPrepare extends StatelessWidget {
           comments: comments,
           cubit: cubit,
           valueNotifier: valueNotifier,
+            scrollController:_controller
         )
       ]),
     );
