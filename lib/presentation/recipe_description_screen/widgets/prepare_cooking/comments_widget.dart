@@ -1,7 +1,9 @@
+import 'package:camera_camera/camera_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:otus_food/data/model/comment.dart';
+
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_cubit.dart';
 
 class CommentsWidget extends StatelessWidget {
@@ -212,8 +214,17 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                   color: const Color(0xff165932),
                   icon: const Icon(Icons.image),
                   onPressed: () {
-                    // widget.cubit
-                    //     .addPhotoToComment();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => CameraCamera(
+                              onFile: (file) {
+                                //photos.add(file);
+                                //When take foto you should close camera
+                                Navigator.pop(context);
+                                // setState(() {});
+                              },
+                            )));
                   },
                 ),
                 if (focus)

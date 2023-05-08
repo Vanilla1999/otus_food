@@ -66,6 +66,8 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   #rive
   rive: ^0.10.4
+  #simple_camera:
+  camera_camera: ^2.0.2
 
 dev_dependencies:
   flutter_test:
