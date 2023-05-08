@@ -5,7 +5,7 @@ import 'package:otus_food/data/model/cooking_step.dart';
 import 'package:otus_food/data/model/ingredient.dart';
 import 'package:otus_food/data/model/recipe.dart';
 import 'package:otus_food/presentation/recipe_description_screen/bloc/recipe_description_cubit.dart';
-import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/comments_widget.dart';
+import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/comments_widget/comments_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/description_prepare_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/ingridients_widget.dart';
 import 'package:otus_food/presentation/recipe_description_screen/widgets/prepare_cooking/appbar_description_prepare.dart';

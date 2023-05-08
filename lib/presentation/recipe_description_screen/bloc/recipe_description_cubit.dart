@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:otus_food/data/model/comment.dart';
 import 'package:otus_food/data/model/cooking_step.dart';
@@ -49,4 +51,13 @@ class RecipeDescriptionCubit extends Cubit<RecipeDescriptionState> {
         accountImg: 'assets/images/account_image.jpg'));
     emit(RecipeDescriptionState.addNewComment(comments: _comments.toList()));
   }
+
+  Future<void> removeFromDisk(String path)async {
+    final file = File(path);
+    if (await file.exists()) {
+      await file.delete();
+      print("removed $path");
+    }
+  }
+
 }

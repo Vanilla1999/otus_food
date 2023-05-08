@@ -34,7 +34,10 @@ class CommentsWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 17, right: 16, bottom: 37),
-          child: _CustomEdittext(cubit: cubit, scrollController: scrollController,),
+          child: _CustomEdittext(
+            cubit: cubit,
+            scrollController: scrollController,
+          ),
         )
       ],
     );
@@ -151,7 +154,7 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
                   },
                   separatorBuilder: (context, index) {
                     return const SizedBox(
-                      height: 14,
+                      height: 10,
                     );
                   },
                   itemCount: value.length),
@@ -165,7 +168,9 @@ class _CustomEdittext extends StatefulWidget {
   final RecipeDescriptionCubit cubit;
   final ScrollController scrollController;
 
-  const _CustomEdittext({Key? key, required this.cubit, required this.scrollController}) : super(key: key);
+  const _CustomEdittext(
+      {Key? key, required this.cubit, required this.scrollController})
+      : super(key: key);
 
   @override
   State<_CustomEdittext> createState() => _CustomEdittextState();
@@ -200,14 +205,29 @@ class _CustomEdittextState extends State<_CustomEdittext> {
 
   double _paddingKeyboard(BuildContext context, bool isKeyboardVisible) {
     if (isKeyboardVisible) {
-      widget.scrollController.animateTo(
-          widget.scrollController.position.maxScrollExtent+MediaQuery.of(context).viewInsets.bottom,
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.linear);
+      if (!_flagDeleteImage) {
+        widget.scrollController.animateTo(
+            widget.scrollController.position.maxScrollExtent +
+                MediaQuery.of(context).viewInsets.bottom,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.linear);
+      } else{
+        _flagDeleteImage = false;
+      }
       return MediaQuery.of(context).viewInsets.bottom;
     } else {
       return 30.0;
     }
+  }
+
+  bool _flagDeleteImage = false;
+
+  void _deleteImageFromList(int index) {
+    widget.cubit.removeFromDisk(listPhotos[index]);
+    setState(() {
+      listPhotos.removeAt(index);
+      _flagDeleteImage = true;
+    });
   }
 
   @override
@@ -280,9 +300,6 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 14,
-            ),
             SizedBox(
               height: _maxHeight(listPhotos),
               child: Padding(
@@ -292,16 +309,31 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                     itemBuilder: (context, index) {
                       return Center(
                         child: Container(
-                          decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.file(
-                            File(listPhotos[index]),
-                            height: 63,
-                            width: 63,
-                            fit: BoxFit.fill,
-                          ),
+                          height: 76,
+                          width: 76,
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              clipBehavior: Clip.antiAlias,
+                              child: Image.file(
+                                File(listPhotos[index]),
+                                height: 63,
+                                width: 63,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Positioned(
+                                top: -13.0,
+                                right: -13.0,
+                                child: IconButton(
+                                    onPressed: () {
+                                      _deleteImageFromList(index);
+                                    },
+                                    icon: const Icon(
+                                        color: Colors.red, Icons.cancel))),
+                          ]),
                         ),
                       );
                     },
