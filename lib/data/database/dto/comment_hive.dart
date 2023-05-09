@@ -7,7 +7,7 @@ part 'comment_hive.freezed.dart';
 part 'comment_hive.g.dart';
 
 @freezed
-class CommentHive with _$CommentHive {
+class CommentHive extends HiveObject with _$CommentHive {
   @HiveType(typeId: 4)
   factory CommentHive({
     @HiveField(0)required int id,
@@ -17,8 +17,9 @@ class CommentHive with _$CommentHive {
     @HiveField(4)required String accountImg,
     @HiveField(5)required String text,
     @HiveField(6) required int time,
-    @HiveField(7) required String img,
+    @HiveField(7) required List<String> img,
   }) = _CommentHive;
+  CommentHive._();
 }
 extension DbToModel on CommentHive {
   Comment toModel() {

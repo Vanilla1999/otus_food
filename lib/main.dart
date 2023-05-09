@@ -13,6 +13,7 @@ import 'package:otus_food/domain/exit_from_account_usecase.dart';
 import 'package:otus_food/domain/get_account.dart';
 import 'package:otus_food/domain/get_comments_by_recipe_id.dart';
 import 'package:otus_food/domain/get_recipe_usecase.dart';
+import 'package:otus_food/domain/save_comment_usecase.dart';
 import 'package:otus_food/domain/save_account_usecase.dart';
 import 'package:otus_food/firebase_options.dart';
 import 'package:otus_food/navigation/main_navigation.dart';
@@ -32,6 +33,7 @@ Future<void> main() async {
   getIt.registerSingleton<GetCommentsByRecipeId>(GetCommentsByRecipeId());
   getIt.registerSingleton<GetAccount>(GetAccount());
   getIt.registerSingleton<SaveAccountUseCase>(SaveAccountUseCase());
+  getIt.registerSingleton<SaveCommentUseCase>(SaveCommentUseCase());
   getIt.registerSingleton<ExitFromAccount>(ExitFromAccount());
   ImageDowloadRepo().downloadAssetToMemory();
   runApp(const MyApp());

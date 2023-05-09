@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:camera_camera/camera_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -15,13 +16,12 @@ class CommentsWidget extends StatelessWidget {
   final RecipeDescriptionCubit cubit;
   final List<Comment> comments;
   final ScrollController scrollController;
-
-  const CommentsWidget(
-      {Key? key,
-      required this.comments,
-      required this.cubit,
-      required this.valueNotifier,
-      required this.scrollController})
+  final ScrollController commentScrollController = ScrollController();
+   CommentsWidget({Key? key,
+    required this.comments,
+    required this.cubit,
+    required this.valueNotifier,
+    required this.scrollController})
       : super(key: key);
 
   @override
@@ -30,13 +30,13 @@ class CommentsWidget extends StatelessWidget {
       children: [
         _CommentsListWidget(
           comments: comments,
-          valueNotifier: valueNotifier,
+          valueNotifier: valueNotifier
         ),
         Padding(
           padding: const EdgeInsets.only(left: 17, right: 16, bottom: 37),
           child: _CustomEdittext(
             cubit: cubit,
-            scrollController: scrollController,
+            scrollController: scrollController
           ),
         )
       ],
@@ -47,8 +47,9 @@ class CommentsWidget extends StatelessWidget {
 class _CommentsListWidget extends StatefulWidget {
   final List<Comment> comments;
   final ValueNotifier<List<Comment>> valueNotifier;
+  final ScrollController commentScrollController = ScrollController();
 
-  const _CommentsListWidget(
+   _CommentsListWidget(
       {Key? key, required this.comments, required this.valueNotifier})
       : super(key: key);
 
@@ -57,17 +58,18 @@ class _CommentsListWidget extends StatefulWidget {
 }
 
 class _CommentsWidgetState extends State<_CommentsListWidget> {
+
   @override
   void initState() {
     super.initState();
     initializeDateFormatting();
   }
 
-  double _maxHeight(List<Comment> value) {
-    if (value.isEmpty) {
-      return 0;
+  double _maxHeight(bool emptyOrNot, double minvalue, double maxvalue) {
+    if (emptyOrNot) {
+      return minvalue;
     } else {
-      return 300;
+      return maxvalue;
     }
   }
 
@@ -76,18 +78,26 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
     return ValueListenableBuilder(
         valueListenable: widget.valueNotifier,
         builder: (BuildContext context, List<Comment> value, Widget? child) {
+          Future.delayed(Duration.zero, () =>
+              widget.commentScrollController.animateTo(
+                widget.commentScrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.fastOutSlowIn)
+          );
           return Container(
-            constraints: BoxConstraints(maxHeight: _maxHeight(value)),
+            constraints: BoxConstraints(
+                maxHeight: _maxHeight(value.isEmpty, 0, 300)),
             child: Padding(
               padding: const EdgeInsets.only(
                   top: 25, left: 17, right: 16, bottom: 48),
               child: ListView.separated(
+                  controller: widget.commentScrollController,
                   itemBuilder: (context, index) {
                     final comment = value[index];
                     final commentDate =
-                        DateTime.fromMillisecondsSinceEpoch(comment.time);
+                    DateTime.fromMillisecondsSinceEpoch(comment.time);
                     final commentDateString =
-                        DateFormat('dd.MM.yyyy').format(commentDate);
+                    DateFormat('dd.MM.yyyy').format(commentDate);
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -141,11 +151,33 @@ class _CommentsWidgetState extends State<_CommentsListWidget> {
                               const SizedBox(
                                 height: 15,
                               ),
-                              Image(
-                                  height: 160,
-                                  width: double.infinity,
-                                  fit: BoxFit.fitWidth,
-                                  image: AssetImage(comment.img)),
+                              SizedBox(
+                                height: _maxHeight(comment.img.isEmpty, 0, 160),
+                                child: ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Center(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.all(
+                                                  Radius.circular(5))),
+                                          clipBehavior: Clip.antiAlias,
+                                          child: Image.file(
+                                              File(comment.img[index]),
+                                              height: 160,
+                                              width: 160,
+                                              fit: BoxFit.fitWidth),
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return const SizedBox(
+                                        width: 10,
+                                      );
+                                    },
+                                    itemCount: comment.img.length),
+                              )
                             ],
                           ),
                         )
@@ -197,10 +229,10 @@ class _CustomEdittextState extends State<_CustomEdittext> {
     _focus.addListener(_onFocusChange);
     keyboardSubscription =
         keyboardVisibilityController.onChange.listen((bool visible) {
-      setState(() {
-        isKeyboardVisible = visible;
-      });
-    });
+          setState(() {
+            isKeyboardVisible = visible;
+          });
+        });
   }
 
   double _paddingKeyboard(BuildContext context, bool isKeyboardVisible) {
@@ -208,13 +240,19 @@ class _CustomEdittextState extends State<_CustomEdittext> {
       if (!_flagDeleteImage) {
         widget.scrollController.animateTo(
             widget.scrollController.position.maxScrollExtent +
-                MediaQuery.of(context).viewInsets.bottom,
+                MediaQuery
+                    .of(context)
+                    .viewInsets
+                    .bottom,
             duration: const Duration(milliseconds: 200),
             curve: Curves.linear);
-      } else{
+      } else {
         _flagDeleteImage = false;
       }
-      return MediaQuery.of(context).viewInsets.bottom;
+      return MediaQuery
+          .of(context)
+          .viewInsets
+          .bottom;
     } else {
       return 30.0;
     }
@@ -234,7 +272,7 @@ class _CustomEdittextState extends State<_CustomEdittext> {
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          EdgeInsets.only(bottom: _paddingKeyboard(context, isKeyboardVisible)),
+      EdgeInsets.only(bottom: _paddingKeyboard(context, isKeyboardVisible)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
@@ -247,7 +285,7 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 14, right: 14, bottom: 14),
+                    const EdgeInsets.only(left: 14, right: 14, bottom: 14),
                     child: TextField(
                       focusNode: _focus,
                       controller: textEditingController,
@@ -268,10 +306,12 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                         color: const Color(0xff165932),
                         icon: const Icon(Icons.image),
                         onPressed: () {
+                          _focus.requestFocus();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => CameraCamera(
+                                  builder: (_) =>
+                                      CameraCamera(
                                         onFile: (file) {
                                           //photos.add(file);
                                           //When take foto you should close camera
@@ -290,8 +330,7 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                           onPressed: () {
                             if (textEditingController.text.isNotEmpty) {
                               widget.cubit.addNewComment(
-                                  textEditingController.text,
-                                  "assets/images/comment_image.jpg");
+                                  textEditingController.text, listPhotos);
                             }
                           },
                         ),
@@ -315,7 +354,7 @@ class _CustomEdittextState extends State<_CustomEdittext> {
                             Container(
                               decoration: const BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
+                                  BorderRadius.all(Radius.circular(5))),
                               clipBehavior: Clip.antiAlias,
                               child: Image.file(
                                 File(listPhotos[index]),

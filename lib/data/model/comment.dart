@@ -13,7 +13,7 @@ class Comment with _$Comment {
     required String accountImg,
     required String text,
     required int time,
-    required String img,
+    required List<String> img,
   }) = _Comment;
 }
 

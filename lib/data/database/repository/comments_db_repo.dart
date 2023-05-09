@@ -14,7 +14,7 @@ class MockCommentRepo extends CommentDbRepo {
               time:1682091139000,
               text:
                   "Я не большой любитель рыбы, но решила приготовить по этому рецепту и просто влюбилась!",
-              img: "assets/images/comment_image.jpg", accountName: "annna_obrazsova", accountImg: "assets/images/account_image.jpg"),
+              img: ["assets/images/comment_image.jpg"], accountName: "annna_obrazsova", accountImg: "assets/images/account_image.jpg"),
       Comment(
               id: 1,
               recipeId: 1,
@@ -22,7 +22,7 @@ class MockCommentRepo extends CommentDbRepo {
               time:1682091139000,
               text:
                   "Я не большой любитель рыбы, но решила приготовить по этому рецепту и просто влюбилась!",
-              img: "assets/images/comment_image.jpg", accountName: "annna_obrazsova", accountImg: "assets/images/account_image.jpg"),
+              img: ["assets/images/comment_image.jpg"], accountName: "annna_obrazsova", accountImg: "assets/images/account_image.jpg"),
         ]);
   }
 
