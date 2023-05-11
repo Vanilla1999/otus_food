@@ -7,6 +7,7 @@ import 'package:otus_food/data/database/dto/comment_hive.dart';
 import 'package:otus_food/data/database/dto/cooking_step_hive.dart';
 import 'package:otus_food/data/database/dto/ingredient_hive.dart';
 import 'package:otus_food/data/database/dto/recipe_hive.dart';
+import 'package:otus_food/main.dart';
 import 'package:otus_food/utils/constant.dart';
 import 'package:path_provider/path_provider.dart';
 part 'recipe_source.dart';

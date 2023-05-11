@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:otus_food/data/database/datasource/hive_datasource.dart';
 import 'package:otus_food/data/database/repository/image_download_repo.dart';
@@ -42,6 +43,7 @@ Future<void> main() async {
 Future<void> _releaseInjection() async {
   await HiveDataSource().init();
   await HiveDataSource().generateScureKey();
+  getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   getIt.registerSingleton<HiveDataSource>(HiveDataSource());
   getIt.registerSingleton<CommentDbRepo>(CommentDbRepoImpl());
   getIt.registerSingleton<RecipeDbRepo>(RecipeDbRepoImpl());

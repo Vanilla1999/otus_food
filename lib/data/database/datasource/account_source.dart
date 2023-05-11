@@ -1,9 +1,11 @@
 part of 'hive_datasource.dart';
 
 class AccountSource {
+  final FlutterSecureStorage _flutterSecureStorage = getIt<FlutterSecureStorage>();
+
   Future<AccountHive?> getAccount() async {
     final Box<AccountHive> accountBox;
-    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    FlutterSecureStorage secureStorage = _flutterSecureStorage;
     var key = await secureStorage.read(key: 'encryptionKey');
     var encryptionKey = base64Url.decode(key!);
     accountBox = await Hive.openBox<AccountHive>(accountBoxAccount,
@@ -17,7 +19,7 @@ class AccountSource {
 
   Future<void> saveAccount(AccountHive account) async {
     final Box<AccountHive> accountBox;
-    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    FlutterSecureStorage secureStorage = _flutterSecureStorage;
     var key = await secureStorage.read(key: 'encryptionKey');
     var encryptionKey = base64Url.decode(key!);
     accountBox = await Hive.openBox<AccountHive>(accountBoxAccount,
@@ -27,7 +29,7 @@ class AccountSource {
 
   Future<void> clearAccount() async {
     final Box<AccountHive> accountBox;
-    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    FlutterSecureStorage secureStorage = _flutterSecureStorage;
     var key = await secureStorage.read(key: 'encryptionKey');
     var encryptionKey = base64Url.decode(key!);
     accountBox = await Hive.openBox<AccountHive>(accountBoxAccount,
