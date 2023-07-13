@@ -41,9 +41,9 @@ Future<void> main() async {
 }
 
 Future<void> _releaseInjection() async {
+  getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   await HiveDataSource().init();
   await HiveDataSource().generateScureKey();
-  getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   getIt.registerSingleton<HiveDataSource>(HiveDataSource());
   getIt.registerSingleton<CommentDbRepo>(CommentDbRepoImpl());
   getIt.registerSingleton<RecipeDbRepo>(RecipeDbRepoImpl());
